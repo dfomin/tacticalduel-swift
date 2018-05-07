@@ -15,6 +15,7 @@
 		07DBB29120A0EFD4006DB7F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07DBB28F20A0EFD4006DB7F7 /* LaunchScreen.storyboard */; };
 		07DBB29C20A0EFD4006DB7F7 /* tacticalduelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB29B20A0EFD4006DB7F7 /* tacticalduelTests.swift */; };
 		07DBB2A720A0EFD4006DB7F7 /* tacticalduelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB2A620A0EFD4006DB7F7 /* tacticalduelUITests.swift */; };
+		07DBB2C920A0FBB4006DB7F7 /* Hexamap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DBB2C820A0FBB4006DB7F7 /* Hexamap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		07DBB2A620A0EFD4006DB7F7 /* tacticalduelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tacticalduelUITests.swift; sourceTree = "<group>"; };
 		07DBB2A820A0EFD4006DB7F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07DBB2BE20A0F174006DB7F7 /* hexamap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = hexamap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07DBB2C620A0F89D006DB7F7 /* hexamap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = hexamap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		07DBB2C820A0FBB4006DB7F7 /* Hexamap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Hexamap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07DBB2C920A0FBB4006DB7F7 /* Hexamap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +137,8 @@
 		07DBB2BD20A0F174006DB7F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07DBB2C820A0FBB4006DB7F7 /* Hexamap.framework */,
+				07DBB2C620A0F89D006DB7F7 /* hexamap.framework */,
 				07DBB2BE20A0F174006DB7F7 /* hexamap.framework */,
 			);
 			name = Frameworks;

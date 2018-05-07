@@ -5,6 +5,6 @@
       location = "group:tacticalduel.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:../hexamap/hexamap.xcodeproj">
+      location = "group:/Users/dfomin/projects/hexamap/Hexamap.xcodeproj">
    </FileRef>
 </Workspace>
