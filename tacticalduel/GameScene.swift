@@ -11,11 +11,10 @@ import GameplayKit
 import Hexamap
 
 class GameScene: SKScene {
-
-    let map = HxMap(width: 5, height: 5, orientation: .flat)
+    let map = HxMap(radius: 4)
 
     override func sceneDidLoad() {
-        print("\(map.width) \(map.height)")
+        print("\(map.radius)")
     }
     
     override func update(_ currentTime: TimeInterval) {
