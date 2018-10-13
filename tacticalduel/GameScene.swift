@@ -11,10 +11,15 @@ import GameplayKit
 import Hexamap
 
 class GameScene: SKScene {
-    let map = HxMap(radius: 4)
+    let mapView = HxMapView(radius: 4, edge: 20)
 
     override func sceneDidLoad() {
-        print("\(map.radius)")
+        for cell in mapView.map.cells.filter({ abs($0.q + $0.r) <= mapView.map.radius }) {
+            let (_, points) = mapView.point(for: cell)
+            var shapePoints = points.map { CGPoint(x: self.frame.width / 2 + $0.x, y: self.frame.height / 2 - $0.y) }
+            let shape = SKShapeNode(points: &shapePoints, count: shapePoints.count)
+            addChild(shape)
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
