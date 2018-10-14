@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07205D5A2173DFD60010E3E0 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07205D592173DFD60010E3E0 /* Character.swift */; };
+		075FAC1021729BAB009C23B2 /* Hexamap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DBB2C820A0FBB4006DB7F7 /* Hexamap.framework */; };
+		075FAC1121729BAB009C23B2 /* Hexamap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07DBB2C820A0FBB4006DB7F7 /* Hexamap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07DBB28120A0EFD2006DB7F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB28020A0EFD2006DB7F7 /* AppDelegate.swift */; };
 		07DBB28720A0EFD2006DB7F7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB28620A0EFD2006DB7F7 /* GameScene.swift */; };
 		07DBB28920A0EFD2006DB7F7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB28820A0EFD2006DB7F7 /* GameViewController.swift */; };
@@ -15,7 +18,6 @@
 		07DBB29120A0EFD4006DB7F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07DBB28F20A0EFD4006DB7F7 /* LaunchScreen.storyboard */; };
 		07DBB29C20A0EFD4006DB7F7 /* tacticalduelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB29B20A0EFD4006DB7F7 /* tacticalduelTests.swift */; };
 		07DBB2A720A0EFD4006DB7F7 /* tacticalduelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB2A620A0EFD4006DB7F7 /* tacticalduelUITests.swift */; };
-		07DBB2C920A0FBB4006DB7F7 /* Hexamap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DBB2C820A0FBB4006DB7F7 /* Hexamap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +37,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		075FAC1221729BAB009C23B2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				075FAC1121729BAB009C23B2 /* Hexamap.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		07205D592173DFD60010E3E0 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		07DBB27D20A0EFD2006DB7F7 /* tacticalduel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tacticalduel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DBB28020A0EFD2006DB7F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07DBB28620A0EFD2006DB7F7 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -60,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07DBB2C920A0FBB4006DB7F7 /* Hexamap.framework in Frameworks */,
+				075FAC1021729BAB009C23B2 /* Hexamap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +98,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07205D5C2173E0E10010E3E0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				07DBB28020A0EFD2006DB7F7 /* AppDelegate.swift */,
+				07DBB28D20A0EFD4006DB7F7 /* Assets.xcassets */,
+				07DBB29220A0EFD4006DB7F7 /* Info.plist */,
+				07DBB28F20A0EFD4006DB7F7 /* LaunchScreen.storyboard */,
+				07DBB28A20A0EFD2006DB7F7 /* Main.storyboard */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		07DBB27420A0EFD2006DB7F7 = {
 			isa = PBXGroup;
 			children = (
@@ -105,13 +134,10 @@
 		07DBB27F20A0EFD2006DB7F7 /* tacticalduel */ = {
 			isa = PBXGroup;
 			children = (
-				07DBB28020A0EFD2006DB7F7 /* AppDelegate.swift */,
+				07205D5C2173E0E10010E3E0 /* Supporting Files */,
+				07205D592173DFD60010E3E0 /* Character.swift */,
 				07DBB28620A0EFD2006DB7F7 /* GameScene.swift */,
 				07DBB28820A0EFD2006DB7F7 /* GameViewController.swift */,
-				07DBB28A20A0EFD2006DB7F7 /* Main.storyboard */,
-				07DBB28D20A0EFD4006DB7F7 /* Assets.xcassets */,
-				07DBB28F20A0EFD4006DB7F7 /* LaunchScreen.storyboard */,
-				07DBB29220A0EFD4006DB7F7 /* Info.plist */,
 			);
 			path = tacticalduel;
 			sourceTree = "<group>";
@@ -154,6 +180,7 @@
 				07DBB27920A0EFD2006DB7F7 /* Sources */,
 				07DBB27A20A0EFD2006DB7F7 /* Frameworks */,
 				07DBB27B20A0EFD2006DB7F7 /* Resources */,
+				075FAC1221729BAB009C23B2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,6 +308,7 @@
 				07DBB28720A0EFD2006DB7F7 /* GameScene.swift in Sources */,
 				07DBB28920A0EFD2006DB7F7 /* GameViewController.swift in Sources */,
 				07DBB28120A0EFD2006DB7F7 /* AppDelegate.swift in Sources */,
+				07205D5A2173DFD60010E3E0 /* Character.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
