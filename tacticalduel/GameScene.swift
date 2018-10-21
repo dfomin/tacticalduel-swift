@@ -15,7 +15,14 @@ class GameScene: SKScene {
     var characters = [Character]()
     var buttons = [SKSpriteNode]()
     var actions = [TurnAction]()
-    var selectedCharacter: Character?
+    var turns = [String: CharacterTurn]()
+    var selectedCharacter: Character? {
+        didSet {
+            updateActions()
+        }
+    }
+    
+    let actionsNode = SKNode()
 
     override func sceneDidLoad() {
         let edge = frame.width / CGFloat(11)
@@ -30,6 +37,10 @@ class GameScene: SKScene {
         characters.append(create(name: "stone", q: 3, r: 0, edge: edge))
         characters.append(create(name: "ent", q: 0, r: 3, edge: edge))
         characters.append(create(name: "weather", q: 0, r: -3, edge: edge))
+        
+        for character in characters {
+            turns[character.name] = CharacterTurn(numberOfActions: 3)
+        }
         
         let buttonNames: [(String, TurnAction)] = [
             ("move2", TurnActionMove(direction: .oclock2)),
@@ -51,6 +62,9 @@ class GameScene: SKScene {
             actions.append(name.1)
             addChild(button)
         }
+        
+        actionsNode.position = CGPoint(x: frame.width / 2, y: 0)
+        addChild(actionsNode)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -74,12 +88,20 @@ class GameScene: SKScene {
                 moveAction.timingMode = .easeIn
                 character.node.run(moveAction)
             }
-        } else {
+        } else if let character = selectedCharacter {
             for button in buttons {
                 if button.contains(location) {
                     if let index = buttons.index(of: button) {
-                        print(actions[index].iconName)
+                        turns[character.name]!.append(action: actions[index])
+                        updateActions()
                     }
+                }
+            }
+            
+            for (i, actionSprite) in actionsNode.children.enumerated() {
+                if actionSprite.contains(touch.location(in: actionsNode)) {
+                    turns[character.name]!.actions[i] = nil
+                    updateActions()
                 }
             }
         }
@@ -98,6 +120,21 @@ class GameScene: SKScene {
         addChild(character.node)
         
         return character
+    }
+    
+    private func updateActions() {
+        actionsNode.removeAllChildren()
+        
+        if let name = selectedCharacter?.name, let turn = turns[name] {
+            for (i, action) in turn.actions.enumerated() {
+                if let iconName = action?.iconName {
+                    let sprite = SKSpriteNode(imageNamed: iconName)
+                    sprite.anchorPoint = CGPoint(x: 0.5, y: 0)
+                    sprite.position = CGPoint(x: CGFloat(i - 1) * frame.width / 4, y: 0)
+                    actionsNode.addChild(sprite)
+                }
+            }
+        }
     }
     
     private func mapToView(point: CGPoint) -> CGPoint {

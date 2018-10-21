@@ -10,10 +10,12 @@
 		07205D5A2173DFD60010E3E0 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07205D592173DFD60010E3E0 /* Character.swift */; };
 		075FAC1021729BAB009C23B2 /* Hexamap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DBB2C820A0FBB4006DB7F7 /* Hexamap.framework */; };
 		075FAC1121729BAB009C23B2 /* Hexamap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07DBB2C820A0FBB4006DB7F7 /* Hexamap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		07BEFC5C217CF86B004AA00A /* TurnAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC5B217CF86B004AA00A /* TurnAction.swift */; };
-		07BEFC5F217CF90C004AA00A /* TurnActionMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC5E217CF90C004AA00A /* TurnActionMove.swift */; };
-		07BEFC65217D07EE004AA00A /* TurnActionPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC64217D07EE004AA00A /* TurnActionPower.swift */; };
-		07BEFC67217D07F8004AA00A /* TurnActionShoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC66217D07F8004AA00A /* TurnActionShoot.swift */; };
+		07BEFC69217D2A0D004AA00A /* CharacterTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC68217D2A0D004AA00A /* CharacterTurn.swift */; };
+		07BEFC72217D2B43004AA00A /* TurnActionMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */; };
+		07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6E217D2B43004AA00A /* TurnAction.swift */; };
+		07BEFC74217D2B43004AA00A /* TurnActionShoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6F217D2B43004AA00A /* TurnActionShoot.swift */; };
+		07BEFC75217D2B43004AA00A /* TurnActionPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC70217D2B43004AA00A /* TurnActionPower.swift */; };
+		07BEFC76217D2B43004AA00A /* TurnActionSkip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */; };
 		07DBB28120A0EFD2006DB7F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB28020A0EFD2006DB7F7 /* AppDelegate.swift */; };
 		07DBB28720A0EFD2006DB7F7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB28620A0EFD2006DB7F7 /* GameScene.swift */; };
 		07DBB28920A0EFD2006DB7F7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB28820A0EFD2006DB7F7 /* GameViewController.swift */; };
@@ -57,10 +59,12 @@
 
 /* Begin PBXFileReference section */
 		07205D592173DFD60010E3E0 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
-		07BEFC5B217CF86B004AA00A /* TurnAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnAction.swift; sourceTree = "<group>"; };
-		07BEFC5E217CF90C004AA00A /* TurnActionMove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionMove.swift; sourceTree = "<group>"; };
-		07BEFC64217D07EE004AA00A /* TurnActionPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionPower.swift; sourceTree = "<group>"; };
-		07BEFC66217D07F8004AA00A /* TurnActionShoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionShoot.swift; sourceTree = "<group>"; };
+		07BEFC68217D2A0D004AA00A /* CharacterTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTurn.swift; sourceTree = "<group>"; };
+		07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionMove.swift; sourceTree = "<group>"; };
+		07BEFC6E217D2B43004AA00A /* TurnAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnAction.swift; sourceTree = "<group>"; };
+		07BEFC6F217D2B43004AA00A /* TurnActionShoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionShoot.swift; sourceTree = "<group>"; };
+		07BEFC70217D2B43004AA00A /* TurnActionPower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionPower.swift; sourceTree = "<group>"; };
+		07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionSkip.swift; sourceTree = "<group>"; };
 		07DBB27D20A0EFD2006DB7F7 /* tacticalduel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tacticalduel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DBB28020A0EFD2006DB7F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07DBB28620A0EFD2006DB7F7 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -118,15 +122,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		07BEFC5D217CF8EF004AA00A /* TurnActions */ = {
+		07BEFC6C217D2AD0004AA00A /* TurnActions */ = {
 			isa = PBXGroup;
 			children = (
-				07BEFC5B217CF86B004AA00A /* TurnAction.swift */,
-				07BEFC5E217CF90C004AA00A /* TurnActionMove.swift */,
-				07BEFC64217D07EE004AA00A /* TurnActionPower.swift */,
-				07BEFC66217D07F8004AA00A /* TurnActionShoot.swift */,
+				07BEFC6E217D2B43004AA00A /* TurnAction.swift */,
+				07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */,
+				07BEFC70217D2B43004AA00A /* TurnActionPower.swift */,
+				07BEFC6F217D2B43004AA00A /* TurnActionShoot.swift */,
+				07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */,
 			);
-			name = TurnActions;
+			path = TurnActions;
 			sourceTree = "<group>";
 		};
 		07DBB27420A0EFD2006DB7F7 = {
@@ -153,11 +158,12 @@
 		07DBB27F20A0EFD2006DB7F7 /* tacticalduel */ = {
 			isa = PBXGroup;
 			children = (
-				07BEFC5D217CF8EF004AA00A /* TurnActions */,
+				07BEFC6C217D2AD0004AA00A /* TurnActions */,
 				07205D5C2173E0E10010E3E0 /* Supporting Files */,
 				07205D592173DFD60010E3E0 /* Character.swift */,
 				07DBB28620A0EFD2006DB7F7 /* GameScene.swift */,
 				07DBB28820A0EFD2006DB7F7 /* GameViewController.swift */,
+				07BEFC68217D2A0D004AA00A /* CharacterTurn.swift */,
 			);
 			path = tacticalduel;
 			sourceTree = "<group>";
@@ -326,11 +332,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DBB28720A0EFD2006DB7F7 /* GameScene.swift in Sources */,
-				07BEFC5F217CF90C004AA00A /* TurnActionMove.swift in Sources */,
+				07BEFC76217D2B43004AA00A /* TurnActionSkip.swift in Sources */,
+				07BEFC75217D2B43004AA00A /* TurnActionPower.swift in Sources */,
+				07BEFC72217D2B43004AA00A /* TurnActionMove.swift in Sources */,
 				07DBB28920A0EFD2006DB7F7 /* GameViewController.swift in Sources */,
-				07BEFC65217D07EE004AA00A /* TurnActionPower.swift in Sources */,
-				07BEFC67217D07F8004AA00A /* TurnActionShoot.swift in Sources */,
-				07BEFC5C217CF86B004AA00A /* TurnAction.swift in Sources */,
+				07BEFC69217D2A0D004AA00A /* CharacterTurn.swift in Sources */,
+				07BEFC74217D2B43004AA00A /* TurnActionShoot.swift in Sources */,
+				07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */,
 				07DBB28120A0EFD2006DB7F7 /* AppDelegate.swift in Sources */,
 				07205D5A2173DFD60010E3E0 /* Character.swift in Sources */,
 			);

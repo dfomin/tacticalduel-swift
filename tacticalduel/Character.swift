@@ -10,6 +10,8 @@ import SpriteKit
 
 class Character {
     let node: SKSpriteNode
+    let name: String
+    
     private(set) var q: Int
     private(set) var r: Int
     
@@ -19,6 +21,8 @@ class Character {
         let height = node.frame.height
         let scale = edge / width
         node.scale(to: CGSize(width: edge, height: height * scale))
+        
+        self.name = name
         
         self.q = q
         self.r = r
