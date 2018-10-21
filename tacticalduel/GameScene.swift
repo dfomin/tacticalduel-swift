@@ -13,6 +13,8 @@ import Hexamap
 class GameScene: SKScene {
     var mapView: HxMapView!
     var characters = [Character]()
+    var buttons = [SKSpriteNode]()
+    var actions = [TurnAction]()
     var selectedCharacter: Character?
 
     override func sceneDidLoad() {
@@ -28,6 +30,27 @@ class GameScene: SKScene {
         characters.append(create(name: "stone", q: 3, r: 0, edge: edge))
         characters.append(create(name: "ent", q: 0, r: 3, edge: edge))
         characters.append(create(name: "weather", q: 0, r: -3, edge: edge))
+        
+        let buttonNames: [(String, TurnAction)] = [
+            ("move2", TurnActionMove(direction: .oclock2)),
+            ("move4", TurnActionMove(direction: .oclock4)),
+            ("move6", TurnActionMove(direction: .oclock6)),
+            ("move8", TurnActionMove(direction: .oclock8)),
+            ("move10", TurnActionMove(direction: .oclock10)),
+            ("move12", TurnActionMove(direction: .oclock12)),
+            ("shoot", TurnActionShoot()),
+            ("power1", TurnActionPower()),
+            ("power2", TurnActionPower())
+        ]
+        
+        for (i, name) in buttonNames.enumerated() {
+            let button = SKSpriteNode(imageNamed: name.0)
+            button.anchorPoint = CGPoint(x: 0, y: 1)
+            button.position = CGPoint(x: CGFloat(i) * frame.width / 9 , y: frame.height)
+            buttons.append(button)
+            actions.append(name.1)
+            addChild(button)
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -50,6 +73,14 @@ class GameScene: SKScene {
                 let moveAction = SKAction.move(to: newPosition, duration: 0.3)
                 moveAction.timingMode = .easeIn
                 character.node.run(moveAction)
+            }
+        } else {
+            for button in buttons {
+                if button.contains(location) {
+                    if let index = buttons.index(of: button) {
+                        print(actions[index].iconName)
+                    }
+                }
             }
         }
     }
