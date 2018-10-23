@@ -6,30 +6,21 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import SpriteKit
+import Hexamap
 
-class Character {
-    let node: SKSpriteNode
-    let name: String
+class Character: Movable {
+    private(set) var coordinates: HxCoordinates
+    private let map: HxMap
     
-    private(set) var q: Int
-    private(set) var r: Int
-    
-    init(q: Int, r: Int, name: String, edge: CGFloat) {
-        node = SKSpriteNode(imageNamed: name)
-        let width = node.frame.width
-        let height = node.frame.height
-        let scale = edge / width
-        node.scale(to: CGSize(width: edge, height: height * scale))
-        
-        self.name = name
-        
-        self.q = q
-        self.r = r
+    init(coordinates: HxCoordinates, map: HxMap) {
+        self.coordinates = coordinates
+        self.map = map
     }
     
-    func setPosition(q: Int, r: Int) {
-        self.q = q
-        self.r = r
+    func step(direction: HxDirection) {
+        let newCoordinates = self.coordinates + direction.relativeCoordinates
+        if map.isInside(coordinates: newCoordinates) {
+            self.coordinates = newCoordinates
+        }
     }
 }

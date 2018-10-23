@@ -8,6 +8,6 @@
 
 class TurnActionSkip: TurnAction {
     var iconName: String {
-        return "power2"
+        return "skip"
     }
 }

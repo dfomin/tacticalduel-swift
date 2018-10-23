@@ -26,9 +26,15 @@ class TurnActionMove: TurnAction {
         }
     }
     
-    let direction: HxDirection
+    private let direction: HxDirection
+    private var object: Movable
     
-    init(direction: HxDirection) {
+    init(direction: HxDirection, object: Movable) {
         self.direction = direction
+        self.object = object
+    }
+    
+    func doAction() {
+        object.step(direction: direction)
     }
 }

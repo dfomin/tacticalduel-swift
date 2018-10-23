@@ -8,4 +8,12 @@
 
 protocol TurnAction {
     var iconName: String { get }
+    
+    func doAction()
+}
+
+extension TurnAction {
+    func doAction() {
+        
+    }
 }
