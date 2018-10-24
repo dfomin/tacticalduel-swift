@@ -82,8 +82,8 @@ class GameScene: SKScene {
         
         let location = touch.location(in: self)
         let point = viewToMap(point: location)
-        if let cell = mapView.cell(for: point) {
-            let characterAtCell = characters.first(where: { $0.character.coordinates.q == cell.q && $0.character.coordinates.r == cell.r })
+        if let coordinates = mapView.cell(at: point)?.coordinates {
+            let characterAtCell = characters.first(where: { $0.character.coordinates.q == coordinates.q && $0.character.coordinates.r == coordinates.r })
             if characterAtCell != nil {
                 selectedCharacter = characterAtCell
             }
@@ -111,17 +111,9 @@ class GameScene: SKScene {
     }
     
     private func create(name: String, q: Int, r: Int, edge: CGFloat) -> CharacterView {
-        let character = CharacterView(coordinates: HxCoordinates(q: q, r: r), name: name, edge: edge, map: mapView.map)
-        guard let cell = mapView.map.cells.first(where: { $0.q == q && $0.r == r }) else {
-            assert(false)
-            return character
-        }
-        
-        let position = mapToView(point: mapView.point(for: cell))
-        character.node.position = position
-        
-        addChild(character.node)
-        
+        let coordinates = HxCoordinates(q: q, r: r)
+        let character = CharacterView(coordinates: coordinates, name: name, edge: edge)
+        mapView.add(objectView: character, at: coordinates)
         return character
     }
     
@@ -140,7 +132,7 @@ class GameScene: SKScene {
         case 5:
              return TurnActionMove(direction: .oclock12, object: selectedCharacter!.character)
         case 6:
-            return TurnActionShoot()
+            return TurnActionShoot(damage: 10, target: mapView.map.cell(at: HxCoordinates(0, 0))!)
         case 7:
             return TurnActionPower()
         case 8:
@@ -167,27 +159,42 @@ class GameScene: SKScene {
     }
     
     private func processActions() {
-        for character in characters {
-            var actions = [SKAction]()
-            for i in 0 ..< 3 {
-                if let action = turns[character.name]?.actions[i] as? TurnActionMove {
-                    action.doAction()
-                    let q = character.character.coordinates.q
-                    let r = character.character.coordinates.r
-                    let cell = mapView.map.cells.first(where: { $0.q == q && $0.r == r })!
-                    let newPosition = mapToView(point: mapView.point(for: cell))
-                    let moveAction = SKAction.move(to: newPosition, duration: 0.3)
-                    moveAction.timingMode = .easeIn
-                    actions.append(moveAction)
-                } else {
-                    actions.append(SKAction.wait(forDuration: 0.3))
+        for i in 0 ..< 3 {
+            var names = characters.map { $0.name }
+            for (name, actions) in turns {
+                if let moveAction = actions[i] as? TurnActionMove {
+                    let view = characters.first(where: { $0.name == name })!
+                    let from = view.character.coordinates
+                    moveAction.doAction()
+                    let to = view.character.coordinates
+                    mapView.move(objectView: view, from: from, to: to)
+                    
+                    names.removeAll(where: { $0 == name })
                 }
             }
             
-            character.node.run(SKAction.sequence(actions))
+            for (name, actions) in turns {
+                if let shootAction = actions[i] as? TurnActionShoot {
+                    let view = characters.first(where: { $0.name == name })!
+                    shootAction.doAction()
+                    mapView.wait(objectView: view)
+                    
+                    names.removeAll(where: { $0 == name })
+                }
+            }
             
+            for character in characters {
+                if names.contains(character.name) {
+                    mapView.wait(objectView: character)
+                }
+            }
+        }
+        
+        for character in characters {
             turns[character.name] = CharacterTurn(numberOfActions: 3)
         }
+        
+        mapView.runActions()
         
         updateActions()
     }

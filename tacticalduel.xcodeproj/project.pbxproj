@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07205D5A2173DFD60010E3E0 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07205D592173DFD60010E3E0 /* Character.swift */; };
 		075FAC1021729BAB009C23B2 /* Hexamap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DBB2C820A0FBB4006DB7F7 /* Hexamap.framework */; };
 		075FAC1121729BAB009C23B2 /* Hexamap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07DBB2C820A0FBB4006DB7F7 /* Hexamap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		077CD959217FC14C00BCC502 /* Movable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CD958217FC14C00BCC502 /* Movable.swift */; };
-		077CD95B217FC1AC00BCC502 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CD95A217FC1AC00BCC502 /* CharacterView.swift */; };
-		07BEFC69217D2A0D004AA00A /* CharacterTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC68217D2A0D004AA00A /* CharacterTurn.swift */; };
+		077CD95D2180B8BF00BCC502 /* Mortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CD95C2180B8BF00BCC502 /* Mortal.swift */; };
+		077CD9622180B99500BCC502 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CD95F2180B99500BCC502 /* Character.swift */; };
+		077CD9632180B99500BCC502 /* CharacterTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CD9602180B99500BCC502 /* CharacterTurn.swift */; };
+		077CD9642180B99500BCC502 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CD9612180B99500BCC502 /* CharacterView.swift */; };
 		07BEFC72217D2B43004AA00A /* TurnActionMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */; };
 		07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6E217D2B43004AA00A /* TurnAction.swift */; };
 		07BEFC74217D2B43004AA00A /* TurnActionShoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6F217D2B43004AA00A /* TurnActionShoot.swift */; };
@@ -60,10 +61,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07205D592173DFD60010E3E0 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		077CD958217FC14C00BCC502 /* Movable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movable.swift; sourceTree = "<group>"; };
-		077CD95A217FC1AC00BCC502 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
-		07BEFC68217D2A0D004AA00A /* CharacterTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTurn.swift; sourceTree = "<group>"; };
+		077CD95C2180B8BF00BCC502 /* Mortal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mortal.swift; sourceTree = "<group>"; };
+		077CD95F2180B99500BCC502 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		077CD9602180B99500BCC502 /* CharacterTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterTurn.swift; sourceTree = "<group>"; };
+		077CD9612180B99500BCC502 /* CharacterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionMove.swift; sourceTree = "<group>"; };
 		07BEFC6E217D2B43004AA00A /* TurnAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnAction.swift; sourceTree = "<group>"; };
 		07BEFC6F217D2B43004AA00A /* TurnActionShoot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionShoot.swift; sourceTree = "<group>"; };
@@ -130,8 +132,19 @@
 			isa = PBXGroup;
 			children = (
 				077CD958217FC14C00BCC502 /* Movable.swift */,
+				077CD95C2180B8BF00BCC502 /* Mortal.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		077CD95E2180B97600BCC502 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				077CD95F2180B99500BCC502 /* Character.swift */,
+				077CD9602180B99500BCC502 /* CharacterTurn.swift */,
+				077CD9612180B99500BCC502 /* CharacterView.swift */,
+			);
+			path = Characters;
 			sourceTree = "<group>";
 		};
 		07BEFC6C217D2AD0004AA00A /* TurnActions */ = {
@@ -170,14 +183,12 @@
 		07DBB27F20A0EFD2006DB7F7 /* tacticalduel */ = {
 			isa = PBXGroup;
 			children = (
+				077CD95E2180B97600BCC502 /* Characters */,
 				077CD957217FC13400BCC502 /* Components */,
 				07BEFC6C217D2AD0004AA00A /* TurnActions */,
 				07205D5C2173E0E10010E3E0 /* Supporting Files */,
 				07DBB28620A0EFD2006DB7F7 /* GameScene.swift */,
 				07DBB28820A0EFD2006DB7F7 /* GameViewController.swift */,
-				07BEFC68217D2A0D004AA00A /* CharacterTurn.swift */,
-				07205D592173DFD60010E3E0 /* Character.swift */,
-				077CD95A217FC1AC00BCC502 /* CharacterView.swift */,
 			);
 			path = tacticalduel;
 			sourceTree = "<group>";
@@ -347,16 +358,17 @@
 			files = (
 				07DBB28720A0EFD2006DB7F7 /* GameScene.swift in Sources */,
 				07BEFC76217D2B43004AA00A /* TurnActionSkip.swift in Sources */,
+				077CD9622180B99500BCC502 /* Character.swift in Sources */,
 				07BEFC75217D2B43004AA00A /* TurnActionPower.swift in Sources */,
+				077CD9642180B99500BCC502 /* CharacterView.swift in Sources */,
 				07BEFC72217D2B43004AA00A /* TurnActionMove.swift in Sources */,
 				07DBB28920A0EFD2006DB7F7 /* GameViewController.swift in Sources */,
 				077CD959217FC14C00BCC502 /* Movable.swift in Sources */,
-				077CD95B217FC1AC00BCC502 /* CharacterView.swift in Sources */,
-				07BEFC69217D2A0D004AA00A /* CharacterTurn.swift in Sources */,
+				077CD95D2180B8BF00BCC502 /* Mortal.swift in Sources */,
+				077CD9632180B99500BCC502 /* CharacterTurn.swift in Sources */,
 				07BEFC74217D2B43004AA00A /* TurnActionShoot.swift in Sources */,
 				07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */,
 				07DBB28120A0EFD2006DB7F7 /* AppDelegate.swift in Sources */,
-				07205D5A2173DFD60010E3E0 /* Character.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

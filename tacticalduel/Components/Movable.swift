@@ -11,5 +11,5 @@ import Hexamap
 protocol Movable {
     var coordinates: HxCoordinates { get }
     
-    mutating func step(direction: HxDirection)
+    func step(direction: HxDirection)
 }
