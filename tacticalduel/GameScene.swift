@@ -20,13 +20,27 @@ class GameScene: SKScene {
             updateActions()
         }
     }
+    var selectedCellCoordinates: HxCoordinates? {
+        didSet {
+            if oldValue != selectedCellCoordinates {
+                if let coordinates = selectedCellCoordinates {
+                    mapView.set(color: UIColor.yellow.withAlphaComponent(0.5), for: coordinates)
+                }
+            }
+            
+            if let oldCoordinates = oldValue {
+                mapView.set(color: .clear, for: oldCoordinates)
+            }
+        }
+    }
     
     let actionsNode = SKNode()
     let processButton = SKSpriteNode(imageNamed: "skip")
 
     override func sceneDidLoad() {
-        let edge = frame.width / CGFloat(11)
-        mapView = HxMapView(radius: 4, edge: edge, center: CGPoint(x: frame.width / 2, y: frame.height / 2))
+        let radius = 3
+        let edge = frame.width / CGFloat((2 * radius + 1) + (radius + 1))
+        mapView = HxMapView(radius: radius, edge: edge, center: CGPoint(x: frame.width / 2, y: frame.height / 2))
         addChild(mapView.node)
         
         self.backgroundColor = .gray
@@ -82,10 +96,17 @@ class GameScene: SKScene {
         
         let location = touch.location(in: self)
         let point = viewToMap(point: location)
-        if let coordinates = mapView.cell(at: point)?.coordinates {
+        let coordinates = mapView.coordinates(at: point)
+        if mapView.map.isInside(coordinates: coordinates) {
             let characterAtCell = characters.first(where: { $0.character.coordinates.q == coordinates.q && $0.character.coordinates.r == coordinates.r })
             if characterAtCell != nil {
                 selectedCharacter = characterAtCell
+            } else {
+                if selectedCellCoordinates != coordinates {
+                    selectedCellCoordinates = coordinates
+                } else {
+                    selectedCellCoordinates = nil
+                }
             }
         } else if let character = selectedCharacter {
             for button in buttons {
@@ -130,7 +151,7 @@ class GameScene: SKScene {
         case 4:
             return TurnActionMove(direction: .oclock10, object: selectedCharacter!.character)
         case 5:
-             return TurnActionMove(direction: .oclock12, object: selectedCharacter!.character)
+            return TurnActionMove(direction: .oclock12, object: selectedCharacter!.character)
         case 6:
             return TurnActionShoot(damage: 10, target: mapView.map.cell(at: HxCoordinates(0, 0))!)
         case 7:
