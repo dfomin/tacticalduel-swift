@@ -15,21 +15,32 @@ class GameScene: SKScene {
     var characters = [CharacterView]()
     var buttons = [SKSpriteNode]()
     var turns = [String: CharacterTurn]()
-    var selectedCharacter: CharacterView? {
+    var selectedCharacter: Character? {
         didSet {
             updateActions()
-        }
-    }
-    var selectedCellCoordinates: HxCoordinates? {
-        didSet {
-            if oldValue != selectedCellCoordinates {
-                if let coordinates = selectedCellCoordinates {
-                    mapView.set(color: UIColor.yellow.withAlphaComponent(0.5), for: coordinates)
-                }
+            
+            if let oldCoordinates = oldValue?.coordinates {
+                mapView.set(color: .clear, for: oldCoordinates)
             }
             
-            if let oldCoordinates = oldValue {
-                mapView.set(color: .clear, for: oldCoordinates)
+            if let coordinates = selectedCharacter?.coordinates {
+                mapView.set(color: .red, for: coordinates)
+            }
+        }
+    }
+    
+    var currentAction: TurnActionTarget? {
+        didSet {
+            if let coordinates = currentAction?.target {
+                mapView.set(color: .yellow, for: coordinates)
+            } else {
+                if let oldCoordinates = oldValue?.target {
+                    if oldCoordinates != selectedCharacter?.coordinates {
+                        mapView.set(color: .clear, for: oldCoordinates)
+                    } else {
+                        mapView.set(color: .red, for: oldCoordinates)
+                    }
+                }
             }
         }
     }
@@ -98,22 +109,28 @@ class GameScene: SKScene {
         let point = viewToMap(point: location)
         let coordinates = mapView.coordinates(at: point)
         if mapView.map.isInside(coordinates: coordinates) {
-            let characterAtCell = characters.first(where: { $0.character.coordinates.q == coordinates.q && $0.character.coordinates.r == coordinates.r })
-            if characterAtCell != nil {
+            if var targetAction = currentAction {
+                if selectedCharacter?.coordinates != targetAction.target {
+                    mapView.set(color: .clear, for: targetAction.target)
+                } else {
+                    mapView.set(color: .red, for: targetAction.target)
+                }
+                targetAction.target = coordinates
+                mapView.set(color: .yellow, for: coordinates)
+            } else if let characterAtCell = mapView.map.cell(at: coordinates)?.mapObjects.first as? Character {
                 selectedCharacter = characterAtCell
             } else {
-                if selectedCellCoordinates != coordinates {
-                    selectedCellCoordinates = coordinates
-                } else {
-                    selectedCellCoordinates = nil
-                }
+                selectedCharacter = nil
             }
         } else if let character = selectedCharacter {
+            var buttonTapped = false
             for button in buttons {
                 if button.contains(location) {
                     if let index = buttons.index(of: button) {
                         turns[character.name]!.append(action: createAction(index: index))
                         updateActions()
+                        
+                        buttonTapped = true
                     }
                 }
             }
@@ -122,7 +139,14 @@ class GameScene: SKScene {
                 if actionSprite.contains(touch.location(in: actionsNode)) {
                     turns[character.name]!.actions[i] = nil
                     updateActions()
+                    
+                    buttonTapped = true
                 }
+            }
+            
+            if !buttonTapped {
+                selectedCharacter = nil
+                currentAction = nil
             }
         }
         
@@ -134,26 +158,31 @@ class GameScene: SKScene {
     private func create(name: String, q: Int, r: Int, edge: CGFloat) -> CharacterView {
         let coordinates = HxCoordinates(q: q, r: r)
         let character = CharacterView(coordinates: coordinates, name: name, edge: edge)
-        mapView.add(objectView: character, at: coordinates)
+        mapView.map.add(object: character.character, at: coordinates)
+        mapView.add(objectView: character.node, for: character.name)
         return character
     }
     
     private func createAction(index: Int) -> TurnAction {
+        currentAction = nil
+        
         switch index {
         case 0:
-            return TurnActionMove(direction: .oclock2, object: selectedCharacter!.character)
+            return TurnActionMove(direction: .oclock2, object: selectedCharacter!)
         case 1:
-            return TurnActionMove(direction: .oclock4, object: selectedCharacter!.character)
+            return TurnActionMove(direction: .oclock4, object: selectedCharacter!)
         case 2:
-            return TurnActionMove(direction: .oclock6, object: selectedCharacter!.character)
+            return TurnActionMove(direction: .oclock6, object: selectedCharacter!)
         case 3:
-            return TurnActionMove(direction: .oclock8, object: selectedCharacter!.character)
+            return TurnActionMove(direction: .oclock8, object: selectedCharacter!)
         case 4:
-            return TurnActionMove(direction: .oclock10, object: selectedCharacter!.character)
+            return TurnActionMove(direction: .oclock10, object: selectedCharacter!)
         case 5:
-            return TurnActionMove(direction: .oclock12, object: selectedCharacter!.character)
+            return TurnActionMove(direction: .oclock12, object: selectedCharacter!)
         case 6:
-            return TurnActionShoot(damage: 10, target: mapView.map.cell(at: HxCoordinates(0, 0))!)
+            let action = TurnActionCommonShoot(target: HxCoordinates(q: 0, r: 0))
+            currentAction = action
+            return action
         case 7:
             return TurnActionPower()
         case 8:
@@ -180,25 +209,22 @@ class GameScene: SKScene {
     }
     
     private func processActions() {
+        selectedCharacter = nil
+        currentAction = nil
+        
         for i in 0 ..< 3 {
             var names = characters.map { $0.name }
             for (name, actions) in turns {
                 if let moveAction = actions[i] as? TurnActionMove {
-                    let view = characters.first(where: { $0.name == name })!
-                    let from = view.character.coordinates
-                    moveAction.doAction()
-                    let to = view.character.coordinates
-                    mapView.move(objectView: view, from: from, to: to)
+                    moveAction.doAction(on: mapView.map)
                     
                     names.removeAll(where: { $0 == name })
                 }
             }
             
             for (name, actions) in turns {
-                if let shootAction = actions[i] as? TurnActionShoot {
-                    let view = characters.first(where: { $0.name == name })!
-                    shootAction.doAction()
-                    mapView.wait(objectView: view)
+                if let shootAction = actions[i] as? TurnActionDamage {
+                    shootAction.doAction(on: mapView.map)
                     
                     names.removeAll(where: { $0 == name })
                 }

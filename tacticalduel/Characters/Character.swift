@@ -9,27 +9,20 @@
 import Hexamap
 
 class Character: HxMapObject {
-    private(set) var coordinates: HxCoordinates
-    
     var health: Int
     var maxHealth: Int
     
-    init(coordinates: HxCoordinates, health: Int) {
-        self.coordinates = coordinates
+    init(name: String, coordinates: HxCoordinates, health: Int) {
         self.health = health
         self.maxHealth = health
-    }
-}
-
-extension Character: Movable {
-    func step(direction: HxDirection) {
-        self.coordinates = self.coordinates + direction.relativeCoordinates
+        
+        super.init(name: name, coordinates: coordinates)
     }
 }
 
 extension Character: Mortal {
     func apply(damage: Int) {
         health -= damage
-        print(health)
+        print("\(name) \(health)")
     }
 }

@@ -6,8 +6,12 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
+import Hexamap
+
 class TurnActionSkip: TurnAction {
     var iconName: String {
         return "skip"
     }
+    
+    func doAction(on map: HxMap) {}
 }

@@ -27,14 +27,14 @@ class TurnActionMove: TurnAction {
     }
     
     private let direction: HxDirection
-    private var object: Movable
+    private var object: HxMapObject
     
-    init(direction: HxDirection, object: Movable) {
+    init(direction: HxDirection, object: HxMapObject) {
         self.direction = direction
         self.object = object
     }
     
-    func doAction() {
-        object.step(direction: direction)
+    func doAction(on map: HxMap) {
+        map.move(object: object, to: object.coordinates + direction.relativeCoordinates)
     }
 }

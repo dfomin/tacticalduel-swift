@@ -6,14 +6,10 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
+import Hexamap
+
 protocol TurnAction {
     var iconName: String { get }
     
-    func doAction()
-}
-
-extension TurnAction {
-    func doAction() {
-        
-    }
+    func doAction(on map: HxMap)
 }

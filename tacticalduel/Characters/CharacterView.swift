@@ -12,15 +12,17 @@ import SpriteKit
 class CharacterView: HxMapObjectView {
     let character: Character
     let node: SKNode
-    let name: String
+    
+    var name: String {
+        return character.name
+    }
     
     var mapObject: HxMapObject {
         return character
     }
     
     init(coordinates: HxCoordinates, name: String, edge: CGFloat) {
-        self.character = Character(coordinates: coordinates, health: 100)
-        self.name = name
+        self.character = Character(name: name, coordinates: coordinates, health: 100)
         
         let sprite = SKSpriteNode(imageNamed: name)
         let width = sprite.frame.width
