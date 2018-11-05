@@ -10,6 +10,4 @@ import Hexamap
 
 protocol TurnActionTarget: TurnAction {
     var target: HxCoordinates { get set }
-    
-    init(target: HxCoordinates)
 }

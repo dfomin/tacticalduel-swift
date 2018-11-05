@@ -13,5 +13,5 @@ class TurnActionSkip: TurnAction {
         return "skip"
     }
     
-    func doAction(on map: HxMap) {}
+    func doAction() {}
 }

@@ -1,14 +1,14 @@
 //
-//  TurnActionCommonShoot.swift
+//  TurnActionThrowStone.swift
 //  tacticalduel
 //
-//  Created by Dmitry Fomin on 01/11/2018.
+//  Created by Dmitry Fomin on 05/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
 import Hexamap
 
-class TurnActionCommonShoot: TurnActionDamage {
+class TurnActionThrowStone: TurnActionDamage {
     private let map: HxMap
     
     var target: HxCoordinates
@@ -18,7 +18,7 @@ class TurnActionCommonShoot: TurnActionDamage {
     }
     
     var iconName: String {
-        return "shoot"
+        return "power1"
     }
     
     init(target: HxCoordinates, on map: HxMap) {
@@ -28,7 +28,7 @@ class TurnActionCommonShoot: TurnActionDamage {
     
     func damage(at coordinates: HxCoordinates) -> Int {
         if coordinates == target {
-            return GameBalance.shared.commonShootDamage
+            return GameBalance.shared.throwStoneDamage
         } else {
             return 0
         }

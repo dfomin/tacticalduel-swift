@@ -8,9 +8,15 @@
 
 import Hexamap
 
+protocol CharacterDelegate: class {
+    func healthDidChange()
+}
+
 class Character: HxMapObject {
     var health: Int
     var maxHealth: Int
+    
+    weak var delegate: CharacterDelegate?
     
     init(name: String, coordinates: HxCoordinates, health: Int) {
         self.health = health
@@ -23,6 +29,7 @@ class Character: HxMapObject {
 extension Character: Mortal {
     func apply(damage: Int) {
         health -= damage
-        print("\(name) \(health)")
+        
+        delegate?.healthDidChange()
     }
 }

@@ -168,25 +168,29 @@ class GameScene: SKScene {
         
         switch index {
         case 0:
-            return TurnActionMove(direction: .oclock2, object: selectedCharacter!)
+            return TurnActionMove(direction: .oclock2, object: selectedCharacter!, on: mapView.map)
         case 1:
-            return TurnActionMove(direction: .oclock4, object: selectedCharacter!)
+            return TurnActionMove(direction: .oclock4, object: selectedCharacter!, on: mapView.map)
         case 2:
-            return TurnActionMove(direction: .oclock6, object: selectedCharacter!)
+            return TurnActionMove(direction: .oclock6, object: selectedCharacter!, on: mapView.map)
         case 3:
-            return TurnActionMove(direction: .oclock8, object: selectedCharacter!)
+            return TurnActionMove(direction: .oclock8, object: selectedCharacter!, on: mapView.map)
         case 4:
-            return TurnActionMove(direction: .oclock10, object: selectedCharacter!)
+            return TurnActionMove(direction: .oclock10, object: selectedCharacter!, on: mapView.map)
         case 5:
-            return TurnActionMove(direction: .oclock12, object: selectedCharacter!)
+            return TurnActionMove(direction: .oclock12, object: selectedCharacter!, on: mapView.map)
         case 6:
-            let action = TurnActionCommonShoot(target: HxCoordinates(q: 0, r: 0))
+            let action = TurnActionCommonShoot(target: HxCoordinates(q: 0, r: 0), on: mapView.map)
             currentAction = action
             return action
         case 7:
-            return TurnActionPower()
+            let action = TurnActionOneDirectionShoot(source: selectedCharacter!.coordinates, target: HxCoordinates(q: 0, r: 0), on: mapView.map)
+            currentAction = action
+            return action
         case 8:
-            return TurnActionPower()
+            let action = TurnActionAllDirectionsShoot(target: HxCoordinates(q: 0, r: 0), on: mapView.map)
+            currentAction = action
+            return action
         case 9:
             return TurnActionSkip()
         default:
@@ -216,7 +220,7 @@ class GameScene: SKScene {
             var names = characters.map { $0.name }
             for (name, actions) in turns {
                 if let moveAction = actions[i] as? TurnActionMove {
-                    moveAction.doAction(on: mapView.map)
+                    moveAction.doAction()
                     
                     names.removeAll(where: { $0 == name })
                 }
@@ -224,7 +228,7 @@ class GameScene: SKScene {
             
             for (name, actions) in turns {
                 if let shootAction = actions[i] as? TurnActionDamage {
-                    shootAction.doAction(on: mapView.map)
+                    shootAction.doAction()
                     
                     names.removeAll(where: { $0 == name })
                 }

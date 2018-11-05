@@ -11,5 +11,5 @@ import Hexamap
 protocol TurnAction {
     var iconName: String { get }
     
-    func doAction(on map: HxMap)
+    func doAction()
 }
