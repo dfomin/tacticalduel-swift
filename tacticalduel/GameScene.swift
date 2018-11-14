@@ -188,8 +188,7 @@ class GameScene: SKScene {
             currentAction = action
             return action
         case 8:
-            let action = TurnActionAllDirectionsShoot(target: HxCoordinates(q: 0, r: 0), on: mapView.map)
-            currentAction = action
+            let action = TurnActionBlow(in: HxDirection.oclock2, on: mapView.map)
             return action
         case 9:
             return TurnActionSkip()
@@ -221,6 +220,14 @@ class GameScene: SKScene {
             for (name, actions) in turns {
                 if let moveAction = actions[i] as? TurnActionMove {
                     moveAction.doAction()
+                    
+                    names.removeAll(where: { $0 == name })
+                }
+            }
+            
+            for (name, actions) in turns {
+                if let blowAction = actions[i] as? TurnActionBlow {
+                    blowAction.doAction()
                     
                     names.removeAll(where: { $0 == name })
                 }
