@@ -29,6 +29,11 @@ class Character: HxMapObject {
 extension Character: Mortal {
     func apply(damage: Int) {
         health -= damage
+        if health < 0 {
+            health = 0
+        } else if health > maxHealth {
+            health = maxHealth
+        }
         
         delegate?.healthDidChange()
     }
