@@ -17,6 +17,10 @@ class GameBalance {
     var fireSectionDamage = 10
     var oneDirectionDamage = 20
     var heal = 10
+    var fireTrapDamage = 5
+    var fireTrapCount = 3
+    var poisonTurnsCount = 3
+    var poisonDamage = 10
     
     var fireSectionLength = 3
     

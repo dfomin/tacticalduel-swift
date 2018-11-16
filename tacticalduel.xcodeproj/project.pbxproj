@@ -33,6 +33,12 @@
 		07B6DABD219CF07700061F72 /* HxMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAB4219CF07700061F72 /* HxMapView.swift */; };
 		07B6DABE219CF07700061F72 /* HxMapObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAB5219CF07700061F72 /* HxMapObjectView.swift */; };
 		07B6DABF219CF07700061F72 /* HxCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAB6219CF07700061F72 /* HxCoordinates.swift */; };
+		07B6DAC7219E2FE100061F72 /* TurnActionFireTrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAC6219E2FE100061F72 /* TurnActionFireTrap.swift */; };
+		07B6DAC9219E31F500061F72 /* FireTrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAC8219E31F500061F72 /* FireTrap.swift */; };
+		07B6DACB219E324300061F72 /* Activatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DACA219E324300061F72 /* Activatable.swift */; };
+		07B6DACD219E335E00061F72 /* Temporary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DACC219E335E00061F72 /* Temporary.swift */; };
+		07B6DACF219E33B000061F72 /* Poison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DACE219E33B000061F72 /* Poison.swift */; };
+		07B6DAD1219E386D00061F72 /* TurnActionPoison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAD0219E386D00061F72 /* TurnActionPoison.swift */; };
 		07BEFC72217D2B43004AA00A /* TurnActionMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */; };
 		07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6E217D2B43004AA00A /* TurnAction.swift */; };
 		07BEFC76217D2B43004AA00A /* TurnActionSkip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */; };
@@ -90,6 +96,12 @@
 		07B6DAB4219CF07700061F72 /* HxMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HxMapView.swift; sourceTree = "<group>"; };
 		07B6DAB5219CF07700061F72 /* HxMapObjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HxMapObjectView.swift; sourceTree = "<group>"; };
 		07B6DAB6219CF07700061F72 /* HxCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HxCoordinates.swift; sourceTree = "<group>"; };
+		07B6DAC6219E2FE100061F72 /* TurnActionFireTrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionFireTrap.swift; sourceTree = "<group>"; };
+		07B6DAC8219E31F500061F72 /* FireTrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireTrap.swift; sourceTree = "<group>"; };
+		07B6DACA219E324300061F72 /* Activatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activatable.swift; sourceTree = "<group>"; };
+		07B6DACC219E335E00061F72 /* Temporary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temporary.swift; sourceTree = "<group>"; };
+		07B6DACE219E33B000061F72 /* Poison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poison.swift; sourceTree = "<group>"; };
+		07B6DAD0219E386D00061F72 /* TurnActionPoison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionPoison.swift; sourceTree = "<group>"; };
 		07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionMove.swift; sourceTree = "<group>"; };
 		07BEFC6E217D2B43004AA00A /* TurnAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnAction.swift; sourceTree = "<group>"; };
 		07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionSkip.swift; sourceTree = "<group>"; };
@@ -154,6 +166,8 @@
 			children = (
 				077CD95C2180B8BF00BCC502 /* Mortal.swift */,
 				07B6DAA7219CE4EE00061F72 /* Movable.swift */,
+				07B6DACA219E324300061F72 /* Activatable.swift */,
+				07B6DACC219E335E00061F72 /* Temporary.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -164,6 +178,8 @@
 				077CD95F2180B99500BCC502 /* Character.swift */,
 				077CD9602180B99500BCC502 /* CharacterTurn.swift */,
 				077CD9612180B99500BCC502 /* CharacterView.swift */,
+				07B6DAC8219E31F500061F72 /* FireTrap.swift */,
+				07B6DACE219E33B000061F72 /* Poison.swift */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -201,6 +217,8 @@
 				07356FC62190F567009C88C7 /* TurnActionOneDirectionShoot.swift */,
 				07B6DAA9219CE5F500061F72 /* TurnActionBlow.swift */,
 				07B6DAAB219CEDA300061F72 /* TurnActionHeal.swift */,
+				07B6DAC6219E2FE100061F72 /* TurnActionFireTrap.swift */,
+				07B6DAD0219E386D00061F72 /* TurnActionPoison.swift */,
 			);
 			path = TurnActions;
 			sourceTree = "<group>";
@@ -412,6 +430,7 @@
 				07517E382190BA7800A4D77C /* TurnActionSplashShoot.swift in Sources */,
 				07B6DABA219CF07700061F72 /* HxDirection.swift in Sources */,
 				07BEFC72217D2B43004AA00A /* TurnActionMove.swift in Sources */,
+				07B6DACB219E324300061F72 /* Activatable.swift in Sources */,
 				07B6DABF219CF07700061F72 /* HxCoordinates.swift in Sources */,
 				07356FBF2190CC5F009C88C7 /* TurnActionAllDirectionsShoot.swift in Sources */,
 				07B6DAB7219CF07700061F72 /* HxMapObject.swift in Sources */,
@@ -423,9 +442,12 @@
 				07B6DABE219CF07700061F72 /* HxMapObjectView.swift in Sources */,
 				071F4DE8218B6F3B005C7B24 /* GameBalance.swift in Sources */,
 				07356FC12190D7E4009C88C7 /* TurnActionThrowStone.swift in Sources */,
+				07B6DAC9219E31F500061F72 /* FireTrap.swift in Sources */,
 				071F4DEA218B949D005C7B24 /* TurnActionTarget.swift in Sources */,
 				07B6DAB9219CF07700061F72 /* HxGrid.swift in Sources */,
 				077CD9632180B99500BCC502 /* CharacterTurn.swift in Sources */,
+				07B6DACD219E335E00061F72 /* Temporary.swift in Sources */,
+				07B6DACF219E33B000061F72 /* Poison.swift in Sources */,
 				07B6DABB219CF07700061F72 /* HxMap.swift in Sources */,
 				07356FC52190E4C3009C88C7 /* TurnActionFireSection.swift in Sources */,
 				07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */,
@@ -433,6 +455,8 @@
 				07DBB28120A0EFD2006DB7F7 /* AppDelegate.swift in Sources */,
 				071F4DE4218B63F6005C7B24 /* TurnActionDamage.swift in Sources */,
 				07B6DAB8219CF07700061F72 /* HxCellView.swift in Sources */,
+				07B6DAD1219E386D00061F72 /* TurnActionPoison.swift in Sources */,
+				07B6DAC7219E2FE100061F72 /* TurnActionFireTrap.swift in Sources */,
 				07356FC32190D9A6009C88C7 /* TurnActionLightning.swift in Sources */,
 				07B6DABC219CF07700061F72 /* HxCell.swift in Sources */,
 			);

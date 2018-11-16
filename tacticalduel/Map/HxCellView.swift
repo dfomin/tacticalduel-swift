@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-open class HxCellView {
+class HxCellView {
     let node: SKShapeNode
     
     init(center: CGPoint, edge: CGFloat) {

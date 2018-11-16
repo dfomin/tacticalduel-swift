@@ -126,6 +126,6 @@ extension HxMapView: HxMapDelegate {
     }
     
     func didRemove(object: HxMapObject) {
-        sprites[object.name]!.removeFromParent()
+        sprites[object.name]?.removeFromParent()
     }
 }

@@ -184,11 +184,11 @@ class GameScene: SKScene {
             currentAction = action
             return action
         case 7:
-            let action = TurnActionOneDirectionShoot(source: selectedCharacter!.coordinates, target: HxCoordinates(q: 0, r: 0), on: mapView.map)
+            let action = TurnActionPoison(target: HxCoordinates(q: 0, r: 0), on: mapView.map)
             currentAction = action
             return action
         case 8:
-            let action = TurnActionHeal(object: selectedCharacter!)
+            let action = TurnActionFireTrap(on: mapView.map)
             return action
         case 9:
             return TurnActionSkip()
@@ -217,6 +217,23 @@ class GameScene: SKScene {
         
         for i in 0 ..< 3 {
             var names = characters.map { $0.name }
+            
+            for (name, actions) in turns {
+                if let fireTrapAction = actions[i] as? TurnActionFireTrap {
+                    fireTrapAction.doAction()
+                    
+                    names.removeAll(where: { $0 == name })
+                }
+            }
+            
+            for (name, actions) in turns {
+                if let healAction = actions[i] as? TurnActionHeal {
+                    healAction.doAction()
+                    
+                    names.removeAll(where: { $0 == name })
+                }
+            }
+            
             for (name, actions) in turns {
                 if let moveAction = actions[i] as? TurnActionMove {
                     moveAction.doAction()
@@ -234,10 +251,25 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
-                if let healAction = actions[i] as? TurnActionHeal {
-                    healAction.doAction()
+                if let poisonAction = actions[i] as? TurnActionPoison {
+                    poisonAction.doAction()
                     
                     names.removeAll(where: { $0 == name })
+                }
+            }
+            
+            for r in -mapView.map.radius ... mapView.map.radius {
+                for q in -mapView.map.radius ... mapView.map.radius {
+                    let coordinates = HxCoordinates(q, r)
+                    if let cell = mapView.map.cell(at: coordinates) {
+                        if !cell.mapObjects.filter({ $0 is Mortal }).isEmpty {
+                            for object in cell.mapObjects {
+                                if let activatable = object as? Activatable {
+                                    activatable.activate()
+                                }
+                            }
+                        }
+                    }
                 }
             }
             
@@ -252,6 +284,19 @@ class GameScene: SKScene {
             for character in characters {
                 if names.contains(character.name) {
                     mapView.wait(objectView: character)
+                }
+            }
+            
+            for r in -mapView.map.radius ... mapView.map.radius {
+                for q in -mapView.map.radius ... mapView.map.radius {
+                    let coordinates = HxCoordinates(q, r)
+                    if let cell = mapView.map.cell(at: coordinates) {
+                        for object in cell.mapObjects {
+                            if let temporary = object as? Temporary {
+                                temporary.turnIsOver()
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -31,7 +31,7 @@ class HxMap {
             return
         }
         
-        cell.mapObjects = [object]
+        cell.mapObjects.append(object)
         
         delegate?.didAdd(object: object)
     }
@@ -42,8 +42,13 @@ class HxMap {
             return
         }
         
-        oldCell.mapObjects = []
-        newCell.mapObjects = [object]
+        guard let index = oldCell.mapObjects.firstIndex(where: { $0 == object }) else {
+            assert(false)
+            return
+        }
+        
+        oldCell.mapObjects.remove(at: index)
+        newCell.mapObjects.append(object)
         
         object.coordinates = to
         
@@ -56,7 +61,12 @@ class HxMap {
             return
         }
         
-        cell.mapObjects = []
+        guard let index = cell.mapObjects.firstIndex(where: { $0 == object }) else {
+            assert(false)
+            return
+        }
+        
+        cell.mapObjects.remove(at: index)
         
         delegate?.didRemove(object: object)
     }
