@@ -22,6 +22,7 @@ class GameBalance {
     var poisonTurnsCount = 3
     var poisonDamage = 10
     var freezeTurnsNumber = 1
+    var invisibilityTurnsNumber = 3
     
     var fireSectionLength = 3
     

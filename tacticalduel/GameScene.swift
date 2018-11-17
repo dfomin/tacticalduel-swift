@@ -188,7 +188,7 @@ class GameScene: SKScene {
             currentAction = action
             return action
         case 8:
-            let action = TurnActionFireTrap(on: mapView.map)
+            let action = TurnActionInvisibility(object: selectedCharacter!)
             return action
         case 9:
             return TurnActionSkip()
@@ -219,7 +219,7 @@ class GameScene: SKScene {
             var names = characters.map { $0.name }
             
             for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
                     continue
                 }
                 
@@ -231,7 +231,7 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
                     continue
                 }
                 
@@ -243,7 +243,7 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
                     continue
                 }
                 
@@ -255,7 +255,7 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
                     continue
                 }
                 
@@ -267,7 +267,7 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
                     continue
                 }
                 
@@ -294,7 +294,7 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
                     continue
                 }
                 
@@ -306,12 +306,24 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
                     continue
                 }
                 
                 if let freezeAction = actions[i] as? TurnActionFreeze {
                     freezeAction.doAction()
+                    
+                    names.removeAll(where: { $0 == name })
+                }
+            }
+            
+            for (name, actions) in turns {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+                    continue
+                }
+                
+                if let invisibilityAction = actions[i] as? TurnActionInvisibility {
+                    invisibilityAction.doAction()
                     
                     names.removeAll(where: { $0 == name })
                 }
@@ -334,6 +346,10 @@ class GameScene: SKScene {
                         }
                     }
                 }
+            }
+            
+            for character in characters {
+                character.node.isHidden = character.character.isHidden
             }
         }
         

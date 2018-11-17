@@ -17,6 +17,7 @@ class Character: HxMapObject {
     var maxHealth: Int
     
     var freezeCount = 0
+    var invisibleCount = 0
     
     weak var delegate: CharacterDelegate?
     
@@ -41,20 +42,33 @@ extension Character: Mortal {
     }
 }
 
-extension Character: Freezable {
+extension Character: Temporary {
     var turnsLeft: Int {
         return freezeCount
     }
     
     func turnIsOver() {
         freezeCount -= 1
+        invisibleCount -= 1
     }
-    
-    func isFreezed() -> Bool {
+}
+
+extension Character: Freezable {
+    var isFreezed: Bool {
         return freezeCount > 0
     }
     
     func freeze(turnsNumber: Int) {
         freezeCount = turnsNumber + 1
+    }
+}
+
+extension Character: Invisible {
+    var isHidden: Bool {
+        return invisibleCount > 0
+    }
+    
+    func hide(turnsNumber: Int) {
+        invisibleCount = turnsNumber + 1
     }
 }
