@@ -184,7 +184,7 @@ class GameScene: SKScene {
             currentAction = action
             return action
         case 7:
-            let action = TurnActionPoison(target: HxCoordinates(q: 0, r: 0), on: mapView.map)
+            let action = TurnActionFreeze(target: HxCoordinates(q: 0, r: 0), on: mapView.map)
             currentAction = action
             return action
         case 8:
@@ -219,6 +219,10 @@ class GameScene: SKScene {
             var names = characters.map { $0.name }
             
             for (name, actions) in turns {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                    continue
+                }
+                
                 if let fireTrapAction = actions[i] as? TurnActionFireTrap {
                     fireTrapAction.doAction()
                     
@@ -227,6 +231,10 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                    continue
+                }
+                
                 if let healAction = actions[i] as? TurnActionHeal {
                     healAction.doAction()
                     
@@ -235,6 +243,10 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                    continue
+                }
+                
                 if let moveAction = actions[i] as? TurnActionMove {
                     moveAction.doAction()
                     
@@ -243,6 +255,10 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                    continue
+                }
+                
                 if let blowAction = actions[i] as? TurnActionBlow {
                     blowAction.doAction()
                     
@@ -251,6 +267,10 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                    continue
+                }
+                
                 if let poisonAction = actions[i] as? TurnActionPoison {
                     poisonAction.doAction()
                     
@@ -274,8 +294,24 @@ class GameScene: SKScene {
             }
             
             for (name, actions) in turns {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                    continue
+                }
+                
                 if let shootAction = actions[i] as? TurnActionDamage {
                     shootAction.doAction()
+                    
+                    names.removeAll(where: { $0 == name })
+                }
+            }
+            
+            for (name, actions) in turns {
+                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed() else {
+                    continue
+                }
+                
+                if let freezeAction = actions[i] as? TurnActionFreeze {
+                    freezeAction.doAction()
                     
                     names.removeAll(where: { $0 == name })
                 }

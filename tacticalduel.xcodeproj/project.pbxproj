@@ -39,6 +39,8 @@
 		07B6DACD219E335E00061F72 /* Temporary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DACC219E335E00061F72 /* Temporary.swift */; };
 		07B6DACF219E33B000061F72 /* Poison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DACE219E33B000061F72 /* Poison.swift */; };
 		07B6DAD1219E386D00061F72 /* TurnActionPoison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAD0219E386D00061F72 /* TurnActionPoison.swift */; };
+		07B6DAD521A0976600061F72 /* TurnActionFreeze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAD421A0976600061F72 /* TurnActionFreeze.swift */; };
+		07B6DAD721A0984300061F72 /* Freezable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAD621A0984300061F72 /* Freezable.swift */; };
 		07BEFC72217D2B43004AA00A /* TurnActionMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */; };
 		07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6E217D2B43004AA00A /* TurnAction.swift */; };
 		07BEFC76217D2B43004AA00A /* TurnActionSkip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */; };
@@ -102,6 +104,8 @@
 		07B6DACC219E335E00061F72 /* Temporary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temporary.swift; sourceTree = "<group>"; };
 		07B6DACE219E33B000061F72 /* Poison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poison.swift; sourceTree = "<group>"; };
 		07B6DAD0219E386D00061F72 /* TurnActionPoison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionPoison.swift; sourceTree = "<group>"; };
+		07B6DAD421A0976600061F72 /* TurnActionFreeze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionFreeze.swift; sourceTree = "<group>"; };
+		07B6DAD621A0984300061F72 /* Freezable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Freezable.swift; sourceTree = "<group>"; };
 		07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionMove.swift; sourceTree = "<group>"; };
 		07BEFC6E217D2B43004AA00A /* TurnAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnAction.swift; sourceTree = "<group>"; };
 		07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionSkip.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				07B6DAA7219CE4EE00061F72 /* Movable.swift */,
 				07B6DACA219E324300061F72 /* Activatable.swift */,
 				07B6DACC219E335E00061F72 /* Temporary.swift */,
+				07B6DAD621A0984300061F72 /* Freezable.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				07B6DAAB219CEDA300061F72 /* TurnActionHeal.swift */,
 				07B6DAC6219E2FE100061F72 /* TurnActionFireTrap.swift */,
 				07B6DAD0219E386D00061F72 /* TurnActionPoison.swift */,
+				07B6DAD421A0976600061F72 /* TurnActionFreeze.swift */,
 			);
 			path = TurnActions;
 			sourceTree = "<group>";
@@ -423,6 +429,7 @@
 			files = (
 				07B6DAA8219CE4EE00061F72 /* Movable.swift in Sources */,
 				07DBB28720A0EFD2006DB7F7 /* GameScene.swift in Sources */,
+				07B6DAD721A0984300061F72 /* Freezable.swift in Sources */,
 				07BEFC76217D2B43004AA00A /* TurnActionSkip.swift in Sources */,
 				07B6DAAC219CEDA300061F72 /* TurnActionHeal.swift in Sources */,
 				077CD9622180B99500BCC502 /* Character.swift in Sources */,
@@ -458,6 +465,7 @@
 				07B6DAD1219E386D00061F72 /* TurnActionPoison.swift in Sources */,
 				07B6DAC7219E2FE100061F72 /* TurnActionFireTrap.swift in Sources */,
 				07356FC32190D9A6009C88C7 /* TurnActionLightning.swift in Sources */,
+				07B6DAD521A0976600061F72 /* TurnActionFreeze.swift in Sources */,
 				07B6DABC219CF07700061F72 /* HxCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

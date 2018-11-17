@@ -16,6 +16,8 @@ class Character: HxMapObject {
     var health: Int
     var maxHealth: Int
     
+    var freezeCount = 0
+    
     weak var delegate: CharacterDelegate?
     
     init(name: String, coordinates: HxCoordinates, health: Int) {
@@ -36,5 +38,23 @@ extension Character: Mortal {
         }
         
         delegate?.healthDidChange()
+    }
+}
+
+extension Character: Freezable {
+    var turnsLeft: Int {
+        return freezeCount
+    }
+    
+    func turnIsOver() {
+        freezeCount -= 1
+    }
+    
+    func isFreezed() -> Bool {
+        return freezeCount > 0
+    }
+    
+    func freeze(turnsNumber: Int) {
+        freezeCount = turnsNumber + 1
     }
 }
