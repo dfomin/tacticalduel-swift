@@ -151,7 +151,10 @@ class GameScene: SKScene {
         }
         
         if processButton.contains(location) {
-            processActions()
+            selectedCharacter = nil
+            currentAction = nil
+            
+            processActions(i: 0)
         }
     }
     
@@ -211,155 +214,154 @@ class GameScene: SKScene {
         }
     }
     
-    private func processActions() {
-        selectedCharacter = nil
-        currentAction = nil
+    private func processActions(i: Int) {
+        guard i < 3 else {
+            for character in characters {
+                turns[character.name] = CharacterTurn(numberOfActions: 3)
+            }
+            
+            updateActions()
+            
+            return
+        }
         
-        for i in 0 ..< 3 {
-            var names = characters.map { $0.name }
+        var names = characters.map { $0.name }
+        
+        for (name, actions) in turns {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+                continue
+            }
             
-            for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
-                    continue
-                }
+            if let fireTrapAction = actions[i] as? TurnActionFireTrap {
+                fireTrapAction.doAction()
                 
-                if let fireTrapAction = actions[i] as? TurnActionFireTrap {
-                    fireTrapAction.doAction()
-                    
-                    names.removeAll(where: { $0 == name })
-                }
+                names.removeAll(where: { $0 == name })
+            }
+        }
+        
+        for (name, actions) in turns {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+                continue
             }
             
-            for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
-                    continue
-                }
+            if let healAction = actions[i] as? TurnActionHeal {
+                healAction.doAction()
                 
-                if let healAction = actions[i] as? TurnActionHeal {
-                    healAction.doAction()
-                    
-                    names.removeAll(where: { $0 == name })
-                }
+                names.removeAll(where: { $0 == name })
+            }
+        }
+        
+        for (name, actions) in turns {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+                continue
             }
             
-            for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
-                    continue
-                }
+            if let moveAction = actions[i] as? TurnActionMove {
+                moveAction.doAction()
                 
-                if let moveAction = actions[i] as? TurnActionMove {
-                    moveAction.doAction()
-                    
-                    names.removeAll(where: { $0 == name })
-                }
+                names.removeAll(where: { $0 == name })
+            }
+        }
+        
+        for (name, actions) in turns {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+                continue
             }
             
-            for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
-                    continue
-                }
+            if let blowAction = actions[i] as? TurnActionBlow {
+                blowAction.doAction()
                 
-                if let blowAction = actions[i] as? TurnActionBlow {
-                    blowAction.doAction()
-                    
-                    names.removeAll(where: { $0 == name })
-                }
+                names.removeAll(where: { $0 == name })
+            }
+        }
+        
+        for (name, actions) in turns {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+                continue
             }
             
-            for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
-                    continue
-                }
+            if let poisonAction = actions[i] as? TurnActionPoison {
+                poisonAction.doAction()
                 
-                if let poisonAction = actions[i] as? TurnActionPoison {
-                    poisonAction.doAction()
-                    
-                    names.removeAll(where: { $0 == name })
-                }
+                names.removeAll(where: { $0 == name })
             }
-            
-            for r in -mapView.map.radius ... mapView.map.radius {
-                for q in -mapView.map.radius ... mapView.map.radius {
-                    let coordinates = HxCoordinates(q, r)
-                    if let cell = mapView.map.cell(at: coordinates) {
-                        if !cell.mapObjects.filter({ $0 is Mortal }).isEmpty {
-                            for object in cell.mapObjects {
-                                if let activatable = object as? Activatable {
-                                    activatable.activate()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
-                    continue
-                }
-                
-                if let shootAction = actions[i] as? TurnActionDamage {
-                    shootAction.doAction()
-                    
-                    names.removeAll(where: { $0 == name })
-                }
-            }
-            
-            for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
-                    continue
-                }
-                
-                if let freezeAction = actions[i] as? TurnActionFreeze {
-                    freezeAction.doAction()
-                    
-                    names.removeAll(where: { $0 == name })
-                }
-            }
-            
-            for (name, actions) in turns {
-                guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
-                    continue
-                }
-                
-                if let invisibilityAction = actions[i] as? TurnActionInvisibility {
-                    invisibilityAction.doAction()
-                    
-                    names.removeAll(where: { $0 == name })
-                }
-            }
-            
-            for character in characters {
-                if names.contains(character.name) {
-                    mapView.wait(objectView: character)
-                }
-            }
-            
-            for r in -mapView.map.radius ... mapView.map.radius {
-                for q in -mapView.map.radius ... mapView.map.radius {
-                    let coordinates = HxCoordinates(q, r)
-                    if let cell = mapView.map.cell(at: coordinates) {
+        }
+        
+        for r in -mapView.map.radius ... mapView.map.radius {
+            for q in -mapView.map.radius ... mapView.map.radius {
+                let coordinates = HxCoordinates(q, r)
+                if let cell = mapView.map.cell(at: coordinates) {
+                    if !cell.mapObjects.filter({ $0 is Mortal }).isEmpty {
                         for object in cell.mapObjects {
-                            if let temporary = object as? Temporary {
-                                temporary.turnIsOver()
+                            if let activatable = object as? Activatable {
+                                activatable.activate()
                             }
                         }
                     }
                 }
             }
+        }
+        
+        for (name, actions) in turns {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+                continue
+            }
             
-            for character in characters {
-                character.node.isHidden = character.character.isHidden
+            if let shootAction = actions[i] as? TurnActionDamage {
+                shootAction.doAction()
+                
+                names.removeAll(where: { $0 == name })
+            }
+        }
+        
+        for (name, actions) in turns {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+                continue
+            }
+            
+            if let freezeAction = actions[i] as? TurnActionFreeze {
+                freezeAction.doAction()
+                
+                names.removeAll(where: { $0 == name })
+            }
+        }
+        
+        for (name, actions) in turns {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+                continue
+            }
+            
+            if let invisibilityAction = actions[i] as? TurnActionInvisibility {
+                invisibilityAction.doAction()
+                
+                names.removeAll(where: { $0 == name })
             }
         }
         
         for character in characters {
-            turns[character.name] = CharacterTurn(numberOfActions: 3)
+            if names.contains(character.name) {
+                mapView.wait(objectView: character)
+            }
         }
         
-        mapView.runActions()
+        for r in -mapView.map.radius ... mapView.map.radius {
+            for q in -mapView.map.radius ... mapView.map.radius {
+                let coordinates = HxCoordinates(q, r)
+                if let cell = mapView.map.cell(at: coordinates) {
+                    for object in cell.mapObjects {
+                        if let temporary = object as? Temporary {
+                            temporary.turnIsOver()
+                        }
+                    }
+                }
+            }
+        }
         
-        updateActions()
+        for character in characters {
+            character.node.isHidden = character.character.isHidden
+        }
+        
+        mapView.runActions(callback: { self.processActions(i: i + 1) })
     }
     
     private func mapToView(point: CGPoint) -> CGPoint {

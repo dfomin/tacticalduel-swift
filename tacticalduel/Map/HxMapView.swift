@@ -59,11 +59,13 @@ class HxMapView {
         actions[objectView.node, default: []].append(SKAction.wait(forDuration: 0.5))
     }
     
-    func runActions() {
+    func runActions(callback: @escaping () -> Void) {
         for node in actions.keys {
             node.run(SKAction.sequence(actions[node]!))
             actions[node] = []
         }
+        
+        node.run(SKAction.sequence([SKAction.wait(forDuration: 0.5), SKAction.run({ callback() })]))
     }
     
     func set(color: UIColor, for coordinates: HxCoordinates) {
