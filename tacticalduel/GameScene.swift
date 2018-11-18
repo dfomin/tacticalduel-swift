@@ -10,8 +10,11 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    var edge: CGFloat!
     var mapView: HxMapView!
+    
     var characters = [CharacterView]()
+    
     var buttons = [SKSpriteNode]()
     var turns = [String: CharacterTurn]()
     var selectedCharacter: Character? {
@@ -49,22 +52,11 @@ class GameScene: SKScene {
 
     override func sceneDidLoad() {
         let radius = 3
-        let edge = frame.width / CGFloat((2 * radius + 1) + (radius + 1))
+        edge = frame.width / CGFloat((2 * radius + 1) + (radius + 1))
         mapView = HxMapView(radius: radius, edge: edge, center: CGPoint(x: frame.width / 2, y: frame.height / 2))
         addChild(mapView.node)
         
         self.backgroundColor = .gray
-        
-        characters.append(create(name: "night", q: -3, r: 0, edge: edge))
-        characters.append(create(name: "fire", q: -3, r: 3, edge: edge))
-        characters.append(create(name: "water", q: 3, r: -3, edge: edge))
-        characters.append(create(name: "stone", q: 3, r: 0, edge: edge))
-        characters.append(create(name: "ent", q: 0, r: 3, edge: edge))
-        characters.append(create(name: "weather", q: 0, r: -3, edge: edge))
-        
-        for character in characters {
-            turns[character.name] = CharacterTurn(numberOfActions: 3)
-        }
         
         let buttonNames = [
             "move2",
@@ -162,9 +154,18 @@ class GameScene: SKScene {
         }
     }
     
-    private func create(name: String, q: Int, r: Int, edge: CGFloat) -> CharacterView {
+    func createTeam(name: String, heroes: [String], positions: [(Int, Int)]) {
+        for (i, hero) in heroes.enumerated() {
+            let hero = create(name: hero, q: positions[i].0, r: positions[i].1, edge: edge, team: name)
+            characters.append(hero)
+            
+            turns[hero.name] = CharacterTurn(numberOfActions: GameBalance.shared.turnsNumber)
+        }
+    }
+    
+    private func create(name: String, q: Int, r: Int, edge: CGFloat, team: String) -> CharacterView {
         let coordinates = HxCoordinates(q: q, r: r)
-        let character = CharacterView(coordinates: coordinates, name: name, edge: edge)
+        let character = CharacterView(coordinates: coordinates, name: name, team: team, edge: edge)
         mapView.map.add(object: character.character, at: coordinates)
         mapView.add(objectView: character.node, for: character.name)
         return character
@@ -213,7 +214,7 @@ class GameScene: SKScene {
     private func power(number: Int, for character: Character) -> TurnAction {
         if character.name == "night" {
             if number == 1 {
-                return TurnActionPoison(target: HxCoordinates(0, 0), on: mapView.map)
+                return TurnActionPoison(target: HxCoordinates(0, 0), team: character.team, on: mapView.map)
             } else if number == 2 {
                 return TurnActionInvisibility(object: character)
             }
@@ -221,7 +222,7 @@ class GameScene: SKScene {
             if number == 1 {
                 return TurnActionFireSection(source: { character.coordinates }, target: HxCoordinates(0, 0), on: mapView.map)
             } else if number == 2 {
-                return TurnActionFireTrap(on: mapView.map)
+                return TurnActionFireTrap(team: character.team, on: mapView.map)
             }
         } else if character.name == "water" {
             if number == 1 {

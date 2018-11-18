@@ -11,17 +11,38 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
+    
+    var heroes1 = [String]()
+    var heroes2 = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let scene = GameScene(size: view.bounds.size)
+        
+        let positions1 = [(0, -3), (-3, 0), (3, -3), (0, -2), (-2, 0), (2, -2)]
+        let positions2 = [(0, 3), (3, 0), (-3, 3), (0, 2), (2, 0), (-2, 2)]
+        scene.createTeam(name: "team 1", heroes: heroes1, positions: positions1)
+        scene.createTeam(name: "team 2", heroes: heroes2, positions: positions2)
+        
         let skView = view as! SKView
         skView.showsFPS = true
         skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .resizeFill
         skView.presentScene(scene)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.isNavigationBarHidden = false
     }
 
     override var shouldAutorotate: Bool {

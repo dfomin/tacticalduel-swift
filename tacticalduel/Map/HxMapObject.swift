@@ -8,10 +8,12 @@
 
 class HxMapObject {
     let name: String
+    let team: String
     var coordinates: HxCoordinates
     
-    init(name: String, coordinates: HxCoordinates) {
+    init(name: String, team: String, coordinates: HxCoordinates) {
         self.name = name
+        self.team = team
         self.coordinates = coordinates
     }
 }

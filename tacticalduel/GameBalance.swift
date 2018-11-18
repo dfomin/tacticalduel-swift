@@ -9,6 +9,15 @@
 class GameBalance {
     static let shared = GameBalance()
     
+    let heros = [
+        "night",
+        "fire",
+        "water",
+        "stone",
+        "ent",
+        "weather"
+    ]
+    
     var commonShootDamage = 5
     var throwStoneDamage = 30
     var allDirectionsDamage = 15

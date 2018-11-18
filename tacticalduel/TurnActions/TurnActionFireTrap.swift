@@ -8,11 +8,13 @@
 
 class TurnActionFireTrap: TurnAction {
     private let map: HxMap
+    private let team: String
     
     let iconName = "power2"
     let turnSlots = GameBalance.shared.fireTrapSlots
     
-    init(on map: HxMap) {
+    init(team: String, on map: HxMap) {
+        self.team = team
         self.map = map
     }
     
@@ -36,8 +38,7 @@ class TurnActionFireTrap: TurnAction {
         }
         
         for target in targetArea {
-            let fireTrap = FireTrap(coordinates: target, on: map)
-            print(target.q, target.r)
+            let fireTrap = FireTrap(coordinates: target, team: team, on: map)
             map.add(object: fireTrap, at: target)
         }
     }

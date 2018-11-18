@@ -19,11 +19,11 @@ class Character: HxMapObject {
     
     weak var delegate: CharacterDelegate?
     
-    init(name: String, coordinates: HxCoordinates, health: Int) {
+    init(name: String, team: String, coordinates: HxCoordinates, health: Int) {
         self.health = health
         self.maxHealth = health
         
-        super.init(name: name, coordinates: coordinates)
+        super.init(name: name, team: team, coordinates: coordinates)
     }
 }
 

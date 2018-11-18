@@ -21,8 +21,8 @@ class CharacterView: HxMapObjectView {
         return character
     }
     
-    init(coordinates: HxCoordinates, name: String, edge: CGFloat) {
-        character = Character(name: name, coordinates: coordinates, health: 100)
+    init(coordinates: HxCoordinates, name: String, team: String, edge: CGFloat) {
+        character = Character(name: name, team: team, coordinates: coordinates, health: 100)
         
         let sprite = SKSpriteNode(imageNamed: name)
         let width = sprite.frame.width

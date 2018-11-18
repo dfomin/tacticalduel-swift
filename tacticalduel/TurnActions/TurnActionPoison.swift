@@ -8,6 +8,7 @@
 
 class TurnActionPoison: TurnActionTarget {
     private let map: HxMap
+    private let team: String
     
     let iconName = "power1"
     let turnSlots = GameBalance.shared.poisonSlots
@@ -20,14 +21,15 @@ class TurnActionPoison: TurnActionTarget {
         return area
     }
     
-    init(target: HxCoordinates, on map: HxMap) {
+    init(target: HxCoordinates, team: String, on map: HxMap) {
         self.target = target
+        self.team = team
         self.map = map
     }
     
     func doAction() {
         for coordinates in targetArea {
-            let poisonCell = Poison(coordinates: coordinates, on: map)
+            let poisonCell = Poison(coordinates: coordinates, team: team, on: map)
             map.add(object: poisonCell, at: coordinates)
         }
     }

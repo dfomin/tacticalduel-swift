@@ -9,10 +9,10 @@
 class FireTrap: HxMapObject {
     private let map: HxMap
     
-    init(coordinates: HxCoordinates, on map: HxMap) {
+    init(coordinates: HxCoordinates, team: String, on map: HxMap) {
         self.map = map
         
-        super.init(name: "FireTrap(\(coordinates.q),\(coordinates.r))", coordinates: coordinates)
+        super.init(name: "FireTrap(\(coordinates.q),\(coordinates.r))", team: team, coordinates: coordinates)
     }
 }
 

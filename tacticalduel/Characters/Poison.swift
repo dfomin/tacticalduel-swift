@@ -11,10 +11,10 @@ class Poison: HxMapObject {
     
     var turnsLeft = GameBalance.shared.poisonTurnsCount
     
-    init(coordinates: HxCoordinates, on map: HxMap) {
+    init(coordinates: HxCoordinates, team: String, on map: HxMap) {
         self.map = map
         
-        super.init(name: "Poison(\(coordinates.q),\(coordinates.r))", coordinates: coordinates)
+        super.init(name: "Poison(\(coordinates.q),\(coordinates.r))", team: team, coordinates: coordinates)
     }
 }
 
