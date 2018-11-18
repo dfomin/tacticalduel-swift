@@ -43,6 +43,7 @@
 		07B6DAD721A0984300061F72 /* Freezable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAD621A0984300061F72 /* Freezable.swift */; };
 		07B6DAD921A09F5D00061F72 /* TurnActionInvisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DAD821A09F5D00061F72 /* TurnActionInvisibility.swift */; };
 		07B6DADB21A09FA000061F72 /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DADA21A09FA000061F72 /* Invisible.swift */; };
+		07B6DADD21A1F73100061F72 /* TurnActionSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B6DADC21A1F73100061F72 /* TurnActionSlot.swift */; };
 		07BEFC72217D2B43004AA00A /* TurnActionMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */; };
 		07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6E217D2B43004AA00A /* TurnAction.swift */; };
 		07BEFC76217D2B43004AA00A /* TurnActionSkip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */; };
@@ -110,6 +111,7 @@
 		07B6DAD621A0984300061F72 /* Freezable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Freezable.swift; sourceTree = "<group>"; };
 		07B6DAD821A09F5D00061F72 /* TurnActionInvisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionInvisibility.swift; sourceTree = "<group>"; };
 		07B6DADA21A09FA000061F72 /* Invisible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invisible.swift; sourceTree = "<group>"; };
+		07B6DADC21A1F73100061F72 /* TurnActionSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionSlot.swift; sourceTree = "<group>"; };
 		07BEFC6D217D2B43004AA00A /* TurnActionMove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionMove.swift; sourceTree = "<group>"; };
 		07BEFC6E217D2B43004AA00A /* TurnAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnAction.swift; sourceTree = "<group>"; };
 		07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionSkip.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				07B6DAD0219E386D00061F72 /* TurnActionPoison.swift */,
 				07B6DAD421A0976600061F72 /* TurnActionFreeze.swift */,
 				07B6DAD821A09F5D00061F72 /* TurnActionInvisibility.swift */,
+				07B6DADC21A1F73100061F72 /* TurnActionSlot.swift */,
 			);
 			path = TurnActions;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				07B6DAB8219CF07700061F72 /* HxCellView.swift in Sources */,
 				07B6DAD1219E386D00061F72 /* TurnActionPoison.swift in Sources */,
 				07B6DAC7219E2FE100061F72 /* TurnActionFireTrap.swift in Sources */,
+				07B6DADD21A1F73100061F72 /* TurnActionSlot.swift in Sources */,
 				07356FC32190D9A6009C88C7 /* TurnActionLightning.swift in Sources */,
 				07B6DAD521A0976600061F72 /* TurnActionFreeze.swift in Sources */,
 				07B6DABC219CF07700061F72 /* HxCell.swift in Sources */,

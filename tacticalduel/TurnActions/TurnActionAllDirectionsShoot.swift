@@ -6,11 +6,12 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
-
 class TurnActionAllDirectionsShoot: TurnAction {
     private let source: () -> HxCoordinates
     private let map: HxMap
+    
+    let iconName = "power2"
+    let turnSlots = GameBalance.shared.allDirectionsShootSlots
     
     var targetArea: [HxCoordinates] {
         var area = [HxCoordinates]()
@@ -18,10 +19,6 @@ class TurnActionAllDirectionsShoot: TurnAction {
             area.append(contentsOf: map.straightPath(from: source(), to: direction))
         }
         return area
-    }
-    
-    var iconName: String {
-        return "power2"
     }
     
     init(source: @escaping () -> HxCoordinates, on map: HxMap) {

@@ -6,8 +6,6 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
-
 class TurnActionFireSection: TurnActionDamage {
     private let map: HxMap
     private let source: () -> HxCoordinates
@@ -20,9 +18,8 @@ class TurnActionFireSection: TurnActionDamage {
         return area
     }
     
-    var iconName: String {
-        return "power1"
-    }
+    let iconName = "power1"
+    let turnSlots = GameBalance.shared.fireSectionSlots
     
     init(source: @escaping () -> HxCoordinates, target: HxCoordinates, on map: HxMap) {
         self.source = source

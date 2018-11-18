@@ -6,10 +6,11 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
-
 class TurnActionSplashShoot: TurnActionDamage {
     private let map: HxMap
+    
+    let iconName = "power1"
+    let turnSlots = GameBalance.shared.splashShootSlots
     
     var target: HxCoordinates
     
@@ -17,10 +18,6 @@ class TurnActionSplashShoot: TurnActionDamage {
         var area = [target]
         area.append(contentsOf: map.neighbors(of: target))
         return area
-    }
-    
-    var iconName: String {
-        return "power1"
     }
     
     init(target: HxCoordinates, on map: HxMap) {

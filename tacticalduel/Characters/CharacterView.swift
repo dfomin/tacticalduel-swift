@@ -6,7 +6,6 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
 import SpriteKit
 
 class CharacterView: HxMapObjectView {

@@ -8,7 +8,6 @@
 
 import SpriteKit
 import GameplayKit
-import Hexamap
 
 class GameScene: SKScene {
     var mapView: HxMapView!
@@ -127,8 +126,13 @@ class GameScene: SKScene {
             for button in buttons {
                 if button.contains(location) {
                     if let index = buttons.index(of: button) {
-                        turns[character.name]!.append(action: createAction(index: index))
-                        updateActions()
+                        let action = createAction(index: index)
+                        if turns[character.name]!.hasSpaceFor(slots: action.turnSlots) {
+                            turns[character.name]!.append(action: action)
+                            updateActions()
+                        } else {
+                            currentAction = nil
+                        }
                         
                         buttonTapped = true
                     }
@@ -137,7 +141,7 @@ class GameScene: SKScene {
             
             for (i, actionSprite) in actionsNode.children.enumerated() {
                 if actionSprite.contains(touch.location(in: actionsNode)) {
-                    turns[character.name]!.actions[i] = nil
+                    turns[character.name]!.remove(at: i)
                     updateActions()
                     
                     buttonTapped = true
@@ -262,9 +266,9 @@ class GameScene: SKScene {
     }
     
     private func processActions(i: Int) {
-        guard i < 3 else {
+        guard i < GameBalance.shared.turnsNumber else {
             for character in characters {
-                turns[character.name] = CharacterTurn(numberOfActions: 3)
+                turns[character.name] = CharacterTurn(numberOfActions: GameBalance.shared.turnsNumber)
             }
             
             updateActions()

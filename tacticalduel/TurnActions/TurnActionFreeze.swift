@@ -9,16 +9,15 @@
 class TurnActionFreeze: TurnActionTarget {
     private let map: HxMap
     
+    let iconName = "power2"
+    let turnSlots = GameBalance.shared.freezeSlots
+    
     var target: HxCoordinates
     
     var targetArea: [HxCoordinates] {
         var area = [target]
         area.append(contentsOf: map.neighbors(of: target))
         return area
-    }
-    
-    var iconName: String {
-        return "power2"
     }
     
     init(target: HxCoordinates, on map: HxMap) {

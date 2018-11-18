@@ -6,9 +6,13 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
-
 class TurnActionMove: TurnAction {
+    private let direction: HxDirection
+    private var object: HxMapObject
+    private let map: HxMap
+    
+    let turnSlots = GameBalance.shared.moveSlots
+    
     var iconName: String {
         switch direction {
         case .oclock2:
@@ -25,10 +29,6 @@ class TurnActionMove: TurnAction {
             return "move12"
         }
     }
-    
-    private let direction: HxDirection
-    private var object: HxMapObject
-    private let map: HxMap
     
     init(direction: HxDirection, object: HxMapObject, on map: HxMap) {
         self.direction = direction

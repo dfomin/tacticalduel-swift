@@ -9,9 +9,8 @@
 class TurnActionInvisibility: TurnAction {
     private let object: Invisible
     
-    var iconName: String {
-        return "power2"
-    }
+    let iconName = "power2"
+    let turnSlots = GameBalance.shared.invisibilitySlots
     
     init(object: Invisible) {
         self.object = object

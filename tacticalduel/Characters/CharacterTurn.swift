@@ -22,11 +22,83 @@ class CharacterTurn {
         }
     }
     
-    func append(action: TurnAction) {
-        guard let index = actions.firstIndex(where: { $0 == nil }) else {
-            return
+    func hasSpaceFor(slots: Int) -> Bool {
+        var count = 0
+        var maxCount = 0
+        for i in 0 ..< actions.count {
+            if actions[i] == nil {
+                count += 1
+            } else {
+                if maxCount < count {
+                    maxCount = count
+                }
+                count = 0
+            }
         }
         
-        actions[index] = action
+        if maxCount < count {
+            maxCount = count
+        }
+        
+        return maxCount >= slots
+    }
+    
+    func append(action: TurnAction) {
+        for i in 0 ..< actions.count {
+            if actions[i] == nil {
+                var isOk = true
+                for j in i ..< i + action.turnSlots {
+                    if actions[j] != nil {
+                        isOk = false
+                        break
+                    }
+                }
+                
+                if isOk {
+                    actions[i] = action
+                    if action.turnSlots > 1 {
+                        for j in i + 1 ..< i + action.turnSlots {
+                            actions[j] = TurnActionSlot()
+                        }
+                    }
+                    
+                    return
+                }
+            }
+        }
+    }
+    
+    func remove(at index: Int) {
+        if actions[index] is TurnActionSlot {
+            var i = index
+            while i >= 0 {
+                if actions[i] is TurnActionSlot {
+                    actions[i] = nil
+                } else {
+                    actions[i] = nil
+                    break
+                }
+                
+                i -= 1
+            }
+            
+            i = index
+            while i < actions.count {
+                if actions[i] is TurnActionSlot {
+                    actions[i] = nil
+                } else {
+                    break
+                }
+                
+                i += 1
+            }
+        } else {
+            actions[index] = nil
+            var i = index + 1
+            while i < actions.count && actions[i] is TurnActionSlot {
+                actions[i] = nil
+                i += 1
+            }
+        }
     }
 }

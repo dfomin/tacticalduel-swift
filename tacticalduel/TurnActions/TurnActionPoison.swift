@@ -9,16 +9,15 @@
 class TurnActionPoison: TurnActionTarget {
     private let map: HxMap
     
+    let iconName = "power1"
+    let turnSlots = GameBalance.shared.poisonSlots
+    
     var target: HxCoordinates
     
     var targetArea: [HxCoordinates] {
         var area = [target]
         area.append(contentsOf: map.neighbors(of: target))
         return area
-    }
-    
-    var iconName: String {
-        return "power1"
     }
     
     init(target: HxCoordinates, on map: HxMap) {

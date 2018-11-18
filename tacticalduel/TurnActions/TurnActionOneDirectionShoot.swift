@@ -6,11 +6,12 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
-
 class TurnActionOneDirectionShoot: TurnActionDamage {
     private let map: HxMap
     private let source: () -> HxCoordinates
+    
+    let iconName = "power1"
+    let turnSlots = GameBalance.shared.oneDirectionShootSlots
     
     var target: HxCoordinates
     
@@ -22,10 +23,6 @@ class TurnActionOneDirectionShoot: TurnActionDamage {
         } else {
             return map.straightPath(from: source(), to: HxDirection.oclock2)
         }
-    }
-    
-    var iconName: String {
-        return "power1"
     }
     
     init(source: @escaping () -> HxCoordinates, target: HxCoordinates, on map: HxMap) {

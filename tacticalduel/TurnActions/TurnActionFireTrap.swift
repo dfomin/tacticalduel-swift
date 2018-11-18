@@ -9,9 +9,8 @@
 class TurnActionFireTrap: TurnAction {
     private let map: HxMap
     
-    var iconName: String {
-        return "power2"
-    }
+    let iconName = "power2"
+    let turnSlots = GameBalance.shared.fireTrapSlots
     
     init(on map: HxMap) {
         self.map = map

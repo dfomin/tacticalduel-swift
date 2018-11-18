@@ -6,8 +6,6 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
-
 protocol CharacterDelegate: class {
     func healthDidChange()
 }

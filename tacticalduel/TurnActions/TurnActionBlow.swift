@@ -6,16 +6,13 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
-
 class TurnActionBlow: TurnActionTarget {
     private let map: HxMap
     
-    var target: HxCoordinates
+    let iconName = "power2"
+    let turnSlots = GameBalance.shared.blowSlots
     
-    var iconName: String {
-        return "power2"
-    }
+    var target: HxCoordinates
     
     init(target: HxCoordinates, on map: HxMap) {
         self.target = target

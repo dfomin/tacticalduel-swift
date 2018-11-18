@@ -9,9 +9,8 @@
 class TurnActionHeal: TurnAction {
     private let object: Mortal
     
-    var iconName: String {
-        return "power2"
-    }
+    let iconName = "power2"
+    let turnSlots = GameBalance.shared.healSlots
     
     init(object: Mortal) {
         self.object = object

@@ -6,19 +6,16 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
-
 class TurnActionThrowStone: TurnActionDamage {
     private let map: HxMap
+    
+    let iconName = "power1"
+    let turnSlots = GameBalance.shared.throwStoneSlots
     
     var target: HxCoordinates
     
     var targetArea: [HxCoordinates] {
         return [target]
-    }
-    
-    var iconName: String {
-        return "power1"
     }
     
     init(target: HxCoordinates, on map: HxMap) {

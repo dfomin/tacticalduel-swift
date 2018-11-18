@@ -6,8 +6,6 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
-
 protocol TurnActionTarget: TurnAction {
     var target: HxCoordinates { get set }
 }

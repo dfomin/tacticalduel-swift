@@ -6,19 +6,16 @@
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-import Hexamap
-
 class TurnActionCommonShoot: TurnActionDamage {
     private let map: HxMap
+    
+    let iconName = "shoot"
+    let turnSlots = GameBalance.shared.commonShootSlots
     
     var target: HxCoordinates
     
     var targetArea: [HxCoordinates] {
         return [target]
-    }
-    
-    var iconName: String {
-        return "shoot"
     }
     
     init(target: HxCoordinates, on map: HxMap) {
