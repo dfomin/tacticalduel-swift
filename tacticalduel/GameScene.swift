@@ -187,11 +187,16 @@ class GameScene: SKScene {
             currentAction = action
             return action
         case 7:
-            let action = TurnActionFreeze(target: HxCoordinates(q: 0, r: 0), on: mapView.map)
-            currentAction = action
+            let action = power(number: 1, for: selectedCharacter!)
+            if let targetAction = action as? TurnActionTarget {
+                currentAction = targetAction
+            }
             return action
         case 8:
-            let action = TurnActionInvisibility(object: selectedCharacter!)
+            let action = power(number: 2, for: selectedCharacter!)
+            if let targetAction = action as? TurnActionTarget {
+                currentAction = targetAction
+            }
             return action
         case 9:
             return TurnActionSkip()
@@ -199,6 +204,48 @@ class GameScene: SKScene {
             assert(false)
             return TurnActionSkip()
         }
+    }
+    
+    private func power(number: Int, for character: Character) -> TurnAction {
+        if character.name == "night" {
+            if number == 1 {
+                return TurnActionPoison(target: HxCoordinates(0, 0), on: mapView.map)
+            } else if number == 2 {
+                return TurnActionInvisibility(object: character)
+            }
+        } else if character.name == "fire" {
+            if number == 1 {
+                return TurnActionFireSection(source: character.coordinates, target: HxCoordinates(0, 0), on: mapView.map)
+            } else if number == 2 {
+                return TurnActionFireTrap(on: mapView.map)
+            }
+        } else if character.name == "water" {
+            if number == 1 {
+                return TurnActionOneDirectionShoot(source: character.coordinates, target: HxCoordinates(0, 0), on: mapView.map)
+            } else if number == 2 {
+                return TurnActionFreeze(target: HxCoordinates(0, 0), on: mapView.map)
+            }
+        } else if character.name == "stone" {
+            if number == 1 {
+                return TurnActionThrowStone(target: HxCoordinates(0, 0), on: mapView.map)
+            } else if number == 2 {
+                return TurnActionAllDirectionsShoot(target: character.coordinates, on: mapView.map)
+            }
+        } else if character.name == "ent" {
+            if number == 1 {
+                return TurnActionSplashShoot(target: HxCoordinates(0, 0), on: mapView.map)
+            } else if number == 2 {
+                return TurnActionHeal(object: character)
+            }
+        } else if character.name == "weather" {
+            if number == 1 {
+                return TurnActionLightning(target: HxCoordinates(0, 0), on: mapView.map)
+            } else if number == 2 {
+                return TurnActionBlow(target: HxCoordinates(0, 0), on: mapView.map)
+            }
+        }
+        
+        return TurnActionSkip()
     }
     
     private func updateActions() {

@@ -8,16 +8,17 @@
 
 import Hexamap
 
-class TurnActionBlow: TurnAction {
-    private let direction: HxDirection
+class TurnActionBlow: TurnActionTarget {
     private let map: HxMap
+    
+    var target: HxCoordinates
     
     var iconName: String {
         return "power2"
     }
     
-    init(in direction: HxDirection, on map: HxMap) {
-        self.direction = direction
+    init(target: HxCoordinates, on map: HxMap) {
+        self.target = target
         self.map = map
     }
     
@@ -32,7 +33,13 @@ class TurnActionBlow: TurnAction {
             }
         }
         
-        let directionCoordinates = direction.relativeCoordinates
+        let directionCoordinates: HxCoordinates
+        if let direction = HxDirection(coordinates: target) {
+            directionCoordinates = direction.relativeCoordinates
+        } else {
+            directionCoordinates = HxCoordinates(1, -1)
+        }
+        
         targetArea.sort { (c1, c2) -> Bool in
             if directionCoordinates.q == 1 {
                 return c1.q > c2.q

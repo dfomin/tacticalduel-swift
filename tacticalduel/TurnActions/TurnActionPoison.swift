@@ -18,7 +18,7 @@ class TurnActionPoison: TurnActionTarget {
     }
     
     var iconName: String {
-        return "power2"
+        return "power1"
     }
     
     init(target: HxCoordinates, on map: HxMap) {

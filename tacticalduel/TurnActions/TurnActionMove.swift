@@ -38,7 +38,7 @@ class TurnActionMove: TurnAction {
     
     func doAction() {
         let target = object.coordinates + direction.relativeCoordinates
-        if map.cell(at: target)?.mapObjects.filter({ $0 is Mortal }).first == nil {
+        if map.cell(at: target)?.mapObjects.filter({ $0 is Mortal }).first == nil && map.isInside(coordinates: target) {
             map.move(object: object, to: target)
         }
     }

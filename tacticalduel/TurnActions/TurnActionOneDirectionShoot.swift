@@ -17,8 +17,11 @@ class TurnActionOneDirectionShoot: TurnActionDamage {
     var targetArea: [HxCoordinates] {
         var diff = target - source
         diff = HxCoordinates(diff.q != 0 ? diff.q / abs(diff.q) : 0, diff.r != 0 ? diff.r / abs(diff.r) : 0)
-        let direction = HxDirection(coordinates: diff)!
-        return map.straightPath(from: source, to: direction)
+        if let direction = HxDirection(coordinates: diff) {
+            return map.straightPath(from: source, to: direction)
+        } else {
+            return map.straightPath(from: source, to: HxDirection.oclock2)
+        }
     }
     
     var iconName: String {
