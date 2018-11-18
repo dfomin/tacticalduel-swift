@@ -57,12 +57,10 @@ class HxMap {
     
     func remove(object: HxMapObject, at coordinates: HxCoordinates) {
         guard let cell = self.cell(at: coordinates) else {
-            assert(false)
             return
         }
         
         guard let index = cell.mapObjects.firstIndex(where: { $0 == object }) else {
-            assert(false)
             return
         }
         

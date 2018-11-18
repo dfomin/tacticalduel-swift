@@ -12,7 +12,27 @@ import GameplayKit
 class GameScene: SKScene {
     var edge: CGFloat!
     var mapView: HxMapView!
-    
+    var gameOver = false
+    var currentTeam = "" {
+        didSet {
+            for r in -mapView.map.radius ... mapView.map.radius {
+                for q in -mapView.map.radius ... mapView.map.radius {
+                    let coordinates = HxCoordinates(q, r)
+                    if let cell = mapView.map.cell(at: coordinates) {
+                        for object in cell.mapObjects {
+                            if object is FireTrap {
+                                mapView.set(color: object.team == currentTeam ? .orange : .clear, for: coordinates)
+                            }
+                        }
+                    }
+                }
+            }
+            
+            for character in characters {
+                character.node.isHidden = currentTeam != character.character.team ? character.character.isHidden : false
+            }
+        }
+    }
     var characters = [CharacterView]()
     
     var buttons = [SKSpriteNode]()
@@ -39,6 +59,9 @@ class GameScene: SKScene {
                 if let oldCoordinates = oldValue?.target {
                     if oldCoordinates != selectedCharacter?.coordinates {
                         mapView.set(color: .clear, for: oldCoordinates)
+                        
+                        let team = currentTeam
+                        currentTeam = team
                     } else {
                         mapView.set(color: .red, for: oldCoordinates)
                     }
@@ -48,7 +71,7 @@ class GameScene: SKScene {
     }
     
     let actionsNode = SKNode()
-    let processButton = SKSpriteNode(imageNamed: "skip")
+    let processButton = SKSpriteNode(color: .yellow, size: CGSize(width: 50, height: 50))
 
     override func sceneDidLoad() {
         let radius = 3
@@ -86,12 +109,18 @@ class GameScene: SKScene {
         processButton.anchorPoint = CGPoint(x: 0, y: 0)
         processButton.position = CGPoint(x: 0, y: 0)
         addChild(processButton)
+        
+        currentTeam = "team 1"
     }
     
     override func update(_ currentTime: TimeInterval) {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if gameOver {
+            (self.view?.window?.rootViewController as! UINavigationController).popViewController(animated: true)
+        }
+        
         guard let touch = touches.first else {
             return
         }
@@ -108,7 +137,7 @@ class GameScene: SKScene {
                 }
                 targetAction.target = coordinates
                 mapView.set(color: .yellow, for: coordinates)
-            } else if let characterAtCell = mapView.map.cell(at: coordinates)?.mapObjects.first as? Character {
+            } else if let characterAtCell = mapView.map.cell(at: coordinates)?.mapObjects.first as? Character, characterAtCell.team == currentTeam {
                 selectedCharacter = characterAtCell
             } else {
                 selectedCharacter = nil
@@ -150,7 +179,20 @@ class GameScene: SKScene {
             selectedCharacter = nil
             currentAction = nil
             
-            processActions(i: 0)
+            if currentTeam == "team 1" {
+                currentTeam = ""
+                processButton.color = .white
+            } else if currentTeam == "" {
+                currentTeam = "team 2"
+                processButton.color = .blue
+            } else if currentTeam == "team 2" {
+                currentTeam = "end"
+                processButton.color = .white
+                processActions(i: 0)
+            } else if currentTeam == "end" {
+                currentTeam = "team 1"
+                processButton.color = .yellow
+            }
         }
     }
     
@@ -280,7 +322,7 @@ class GameScene: SKScene {
         var names = characters.map { $0.name }
         
         for (name, actions) in turns {
-            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, character.canAct else {
                 continue
             }
             
@@ -292,7 +334,7 @@ class GameScene: SKScene {
         }
         
         for (name, actions) in turns {
-            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, character.canAct else {
                 continue
             }
             
@@ -304,7 +346,7 @@ class GameScene: SKScene {
         }
         
         for (name, actions) in turns {
-            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, character.canAct else {
                 continue
             }
             
@@ -316,7 +358,7 @@ class GameScene: SKScene {
         }
         
         for (name, actions) in turns {
-            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, character.canAct else {
                 continue
             }
             
@@ -328,7 +370,7 @@ class GameScene: SKScene {
         }
         
         for (name, actions) in turns {
-            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, character.canAct else {
                 continue
             }
             
@@ -355,7 +397,7 @@ class GameScene: SKScene {
         }
         
         for (name, actions) in turns {
-            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, character.canAct else {
                 continue
             }
             
@@ -367,7 +409,7 @@ class GameScene: SKScene {
         }
         
         for (name, actions) in turns {
-            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, character.canAct else {
                 continue
             }
             
@@ -379,7 +421,7 @@ class GameScene: SKScene {
         }
         
         for (name, actions) in turns {
-            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, character.canAct else {
                 continue
             }
             
@@ -391,7 +433,7 @@ class GameScene: SKScene {
         }
         
         for (name, actions) in turns {
-            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, character.canAct else {
                 continue
             }
             
@@ -423,6 +465,25 @@ class GameScene: SKScene {
         
         for character in characters {
             character.node.isHidden = character.character.isHidden
+        }
+        
+        for character in characters {
+            if character.character.health <= 0 {
+                mapView.map.remove(object: character.character, at: character.character.coordinates)
+            }
+        }
+        
+        let aliveHeroes1 = characters.filter { $0.character.team == "team 1" && !$0.character.isDead }.count
+        let aliveHeroes2 = characters.filter { $0.character.team == "team 2" && !$0.character.isDead }.count
+        if aliveHeroes1 == 0 || aliveHeroes2 == 0 {
+            let text = aliveHeroes1 > 0 ? "Player 1" : aliveHeroes2 > 0 ? "Player 2" : "Draw"
+            let label = SKLabelNode(text: text)
+            label.fontColor = .green
+            label.fontName = "AvenirNext-Bold"
+            label.position = CGPoint(x: self.frame.width / 2, y: 0)
+            addChild(label)
+            
+            gameOver = true
         }
         
         mapView.runActions(callback: { self.processActions(i: i + 1) })

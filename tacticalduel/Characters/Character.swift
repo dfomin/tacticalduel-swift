@@ -19,6 +19,12 @@ class Character: HxMapObject {
     
     weak var delegate: CharacterDelegate?
     
+    var isDead = false
+    
+    var canAct: Bool {
+        return !isDead && !isFreezed
+    }
+    
     init(name: String, team: String, coordinates: HxCoordinates, health: Int) {
         self.health = health
         self.maxHealth = health
@@ -48,6 +54,8 @@ extension Character: Temporary {
     func turnIsOver() {
         freezeCount -= 1
         invisibleCount -= 1
+        
+        isDead = health <= 0
     }
 }
 

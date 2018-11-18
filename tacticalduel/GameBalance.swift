@@ -18,6 +18,8 @@ class GameBalance {
         "weather"
     ]
     
+    var health = 100
+    
     var commonShootDamage = 5
     var throwStoneDamage = 30
     var allDirectionsDamage = 15

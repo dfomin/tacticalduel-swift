@@ -22,7 +22,7 @@ class CharacterView: HxMapObjectView {
     }
     
     init(coordinates: HxCoordinates, name: String, team: String, edge: CGFloat) {
-        character = Character(name: name, team: team, coordinates: coordinates, health: 100)
+        character = Character(name: name, team: team, coordinates: coordinates, health: GameBalance.shared.health)
         
         let sprite = SKSpriteNode(imageNamed: name)
         let width = sprite.frame.width
