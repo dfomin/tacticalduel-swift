@@ -10,17 +10,17 @@ import Hexamap
 
 class TurnActionOneDirectionShoot: TurnActionDamage {
     private let map: HxMap
-    private let source: HxCoordinates
+    private let source: () -> HxCoordinates
     
     var target: HxCoordinates
     
     var targetArea: [HxCoordinates] {
-        var diff = target - source
+        var diff = target - source()
         diff = HxCoordinates(diff.q != 0 ? diff.q / abs(diff.q) : 0, diff.r != 0 ? diff.r / abs(diff.r) : 0)
         if let direction = HxDirection(coordinates: diff) {
-            return map.straightPath(from: source, to: direction)
+            return map.straightPath(from: source(), to: direction)
         } else {
-            return map.straightPath(from: source, to: HxDirection.oclock2)
+            return map.straightPath(from: source(), to: HxDirection.oclock2)
         }
     }
     
@@ -28,7 +28,7 @@ class TurnActionOneDirectionShoot: TurnActionDamage {
         return "power1"
     }
     
-    init(source: HxCoordinates, target: HxCoordinates, on map: HxMap) {
+    init(source: @escaping () -> HxCoordinates, target: HxCoordinates, on map: HxMap) {
         self.source = source
         self.target = target
         self.map = map

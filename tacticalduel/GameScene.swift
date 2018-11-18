@@ -215,13 +215,13 @@ class GameScene: SKScene {
             }
         } else if character.name == "fire" {
             if number == 1 {
-                return TurnActionFireSection(source: character.coordinates, target: HxCoordinates(0, 0), on: mapView.map)
+                return TurnActionFireSection(source: { character.coordinates }, target: HxCoordinates(0, 0), on: mapView.map)
             } else if number == 2 {
                 return TurnActionFireTrap(on: mapView.map)
             }
         } else if character.name == "water" {
             if number == 1 {
-                return TurnActionOneDirectionShoot(source: character.coordinates, target: HxCoordinates(0, 0), on: mapView.map)
+                return TurnActionOneDirectionShoot(source: { character.coordinates }, target: HxCoordinates(0, 0), on: mapView.map)
             } else if number == 2 {
                 return TurnActionFreeze(target: HxCoordinates(0, 0), on: mapView.map)
             }
@@ -229,7 +229,7 @@ class GameScene: SKScene {
             if number == 1 {
                 return TurnActionThrowStone(target: HxCoordinates(0, 0), on: mapView.map)
             } else if number == 2 {
-                return TurnActionAllDirectionsShoot(target: character.coordinates, on: mapView.map)
+                return TurnActionAllDirectionsShoot(source: { character.coordinates }, on: mapView.map)
             }
         } else if character.name == "ent" {
             if number == 1 {
@@ -346,6 +346,18 @@ class GameScene: SKScene {
                         }
                     }
                 }
+            }
+        }
+        
+        for (name, actions) in turns {
+            guard let character = characters.first(where: { $0.character.name == name })?.character, !character.isFreezed else {
+                continue
+            }
+            
+            if let shootAction = actions[i] as? TurnActionAllDirectionsShoot {
+                shootAction.doAction()
+                
+                names.removeAll(where: { $0 == name })
             }
         }
         

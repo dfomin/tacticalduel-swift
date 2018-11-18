@@ -10,13 +10,13 @@ import Hexamap
 
 class TurnActionFireSection: TurnActionDamage {
     private let map: HxMap
-    private let source: HxCoordinates
+    private let source: () -> HxCoordinates
     
     var target: HxCoordinates
     
     var targetArea: [HxCoordinates] {
-        var area = map.section(from: source, to: target, length: GameBalance.shared.fireSectionLength)
-        area.removeAll(where: { $0 == source })
+        var area = map.section(from: source(), to: target, length: GameBalance.shared.fireSectionLength)
+        area.removeAll(where: { $0 == source() })
         return area
     }
     
@@ -24,7 +24,7 @@ class TurnActionFireSection: TurnActionDamage {
         return "power1"
     }
     
-    init(source: HxCoordinates, target: HxCoordinates, on map: HxMap) {
+    init(source: @escaping () -> HxCoordinates, target: HxCoordinates, on map: HxMap) {
         self.source = source
         self.target = target
         self.map = map

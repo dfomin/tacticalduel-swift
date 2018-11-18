@@ -8,15 +8,14 @@
 
 import Hexamap
 
-class TurnActionAllDirectionsShoot: TurnActionDamage {
+class TurnActionAllDirectionsShoot: TurnAction {
+    private let source: () -> HxCoordinates
     private let map: HxMap
-    
-    var target: HxCoordinates
     
     var targetArea: [HxCoordinates] {
         var area = [HxCoordinates]()
         for direction in HxDirection.allCases {
-            area.append(contentsOf: map.straightPath(from: target, to: direction))
+            area.append(contentsOf: map.straightPath(from: source(), to: direction))
         }
         return area
     }
@@ -25,8 +24,8 @@ class TurnActionAllDirectionsShoot: TurnActionDamage {
         return "power2"
     }
     
-    init(target: HxCoordinates, on map: HxMap) {
-        self.target = target
+    init(source: @escaping () -> HxCoordinates, on map: HxMap) {
+        self.source = source
         self.map = map
     }
     
