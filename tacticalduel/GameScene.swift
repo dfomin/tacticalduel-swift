@@ -71,13 +71,15 @@ class GameScene: SKScene {
     }
     
     let actionsNode = SKNode()
-    let processButton = SKSpriteNode(color: .yellow, size: CGSize(width: 50, height: 50))
+    var processButton: SKSpriteNode!
 
     override func sceneDidLoad() {
         let radius = 3
         edge = frame.width / CGFloat((2 * radius + 1) + (radius + 1))
         mapView = HxMapView(radius: radius, edge: edge, center: CGPoint(x: frame.width / 2, y: frame.height / 2))
         addChild(mapView.node)
+        
+        let freeSpace = (frame.height - edge * CGFloat(2 * radius + 1) * CGFloat(sqrt(3.0))) / CGFloat(2.0)
         
         self.backgroundColor = .gray
         
@@ -97,8 +99,9 @@ class GameScene: SKScene {
         for (i, name) in buttonNames.enumerated() {
             let button = SKSpriteNode(imageNamed: name)
             button.anchorPoint = CGPoint(x: 0, y: 1)
-            button.position = CGPoint(x: CGFloat(i % 5) * frame.width / CGFloat(buttonNames.count / 2) + button.frame.width / 2,
-                                      y: frame.height - button.frame.height / 2 - button.frame.height * CGFloat(i / 5))
+            button.size = CGSize(width: freeSpace / 2, height: freeSpace / 2)
+            button.position = CGPoint(x: CGFloat(i % 5) * frame.width / CGFloat(buttonNames.count / 2),
+                                      y: frame.height - button.frame.height * CGFloat(i / 5))
             buttons.append(button)
             addChild(button)
         }
@@ -106,6 +109,7 @@ class GameScene: SKScene {
         actionsNode.position = CGPoint(x: frame.width / 2, y: 0)
         addChild(actionsNode)
         
+        processButton = SKSpriteNode(color: .yellow, size: CGSize(width: freeSpace / 2, height: freeSpace / 2))
         processButton.anchorPoint = CGPoint(x: 0, y: 0)
         processButton.position = CGPoint(x: 0, y: 0)
         addChild(processButton)
