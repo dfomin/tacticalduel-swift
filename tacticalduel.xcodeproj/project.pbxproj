@@ -12,6 +12,8 @@
 		071F4DE8218B6F3B005C7B24 /* GameBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F4DE7218B6F3B005C7B24 /* GameBalance.swift */; };
 		071F4DEA218B949D005C7B24 /* TurnActionTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F4DE9218B949D005C7B24 /* TurnActionTarget.swift */; };
 		073334CD21A37FE1000E4578 /* GameLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073334CC21A37FE1000E4578 /* GameLog.swift */; };
+		073334CF21A43016000E4578 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073334CE21A43016000E4578 /* BalanceViewController.swift */; };
+		073334D121A430B5000E4578 /* BalanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073334D021A430B5000E4578 /* BalanceCell.swift */; };
 		07356FBF2190CC5F009C88C7 /* TurnActionAllDirectionsShoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07356FBE2190CC5F009C88C7 /* TurnActionAllDirectionsShoot.swift */; };
 		07356FC12190D7E4009C88C7 /* TurnActionThrowStone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07356FC02190D7E4009C88C7 /* TurnActionThrowStone.swift */; };
 		07356FC32190D9A6009C88C7 /* TurnActionLightning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07356FC22190D9A6009C88C7 /* TurnActionLightning.swift */; };
@@ -83,6 +85,8 @@
 		071F4DE7218B6F3B005C7B24 /* GameBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBalance.swift; sourceTree = "<group>"; };
 		071F4DE9218B949D005C7B24 /* TurnActionTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionTarget.swift; sourceTree = "<group>"; };
 		073334CC21A37FE1000E4578 /* GameLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLog.swift; sourceTree = "<group>"; };
+		073334CE21A43016000E4578 /* BalanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
+		073334D021A430B5000E4578 /* BalanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceCell.swift; sourceTree = "<group>"; };
 		07356FBE2190CC5F009C88C7 /* TurnActionAllDirectionsShoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionAllDirectionsShoot.swift; sourceTree = "<group>"; };
 		07356FC02190D7E4009C88C7 /* TurnActionThrowStone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionThrowStone.swift; sourceTree = "<group>"; };
 		07356FC22190D9A6009C88C7 /* TurnActionLightning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionLightning.swift; sourceTree = "<group>"; };
@@ -279,6 +283,8 @@
 				07B6DADE21A2113600061F72 /* StartViewController.swift */,
 				07B6DAE021A2124700061F72 /* HeroCell.swift */,
 				073334CC21A37FE1000E4578 /* GameLog.swift */,
+				073334CE21A43016000E4578 /* BalanceViewController.swift */,
+				073334D021A430B5000E4578 /* BalanceCell.swift */,
 			);
 			path = tacticalduel;
 			sourceTree = "<group>";
@@ -479,12 +485,14 @@
 				07B6DACF219E33B000061F72 /* Poison.swift in Sources */,
 				07B6DABB219CF07700061F72 /* HxMap.swift in Sources */,
 				07356FC52190E4C3009C88C7 /* TurnActionFireSection.swift in Sources */,
+				073334D121A430B5000E4578 /* BalanceCell.swift in Sources */,
 				07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */,
 				071F4DE6218B6F08005C7B24 /* TurnActionCommonShoot.swift in Sources */,
 				07DBB28120A0EFD2006DB7F7 /* AppDelegate.swift in Sources */,
 				071F4DE4218B63F6005C7B24 /* TurnActionDamage.swift in Sources */,
 				07B6DAB8219CF07700061F72 /* HxCellView.swift in Sources */,
 				07B6DAD1219E386D00061F72 /* TurnActionPoison.swift in Sources */,
+				073334CF21A43016000E4578 /* BalanceViewController.swift in Sources */,
 				07B6DAC7219E2FE100061F72 /* TurnActionFireTrap.swift in Sources */,
 				07B6DADD21A1F73100061F72 /* TurnActionSlot.swift in Sources */,
 				07356FC32190D9A6009C88C7 /* TurnActionLightning.swift in Sources */,

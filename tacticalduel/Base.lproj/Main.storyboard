@@ -59,6 +59,11 @@
                         <viewLayoutGuide key="safeArea" id="p8X-tD-09U"/>
                     </view>
                     <navigationItem key="navigationItem" id="od1-ii-qiC">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="h5W-M5-RxJ">
+                            <connections>
+                                <segue destination="OMS-5u-D7e" kind="show" id="EJ6-ZI-t9h"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="play" id="xdK-cs-aKa">
                             <connections>
                                 <segue destination="BV1-FR-VrT" kind="show" id="chX-0c-DpM"/>
@@ -87,6 +92,80 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1140" y="127.28635682158921"/>
+        </scene>
+        <!--Balance View Controller-->
+        <scene sceneID="8Xw-aZ-OcP">
+            <objects>
+                <viewController id="OMS-5u-D7e" customClass="BalanceViewController" customModule="tacticalduel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TqF-wN-5bw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jq1-fe-z2v">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BalanceCell" id="iXS-UC-Rjt" customClass="BalanceCell" customModule="tacticalduel" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iXS-UC-Rjt" id="LAT-Ax-qQ4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdP-Yu-cyU">
+                                                    <rect key="frame" x="20" y="11.5" width="42" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9YW-wW-CTr">
+                                                    <rect key="frame" x="305" y="7" width="50" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="I9a-59-Ivw"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="iXS-UC-Rjt" id="56e-iZ-wZh"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="JdP-Yu-cyU" firstAttribute="leading" secondItem="LAT-Ax-qQ4" secondAttribute="leading" constant="20" symbolic="YES" id="Dxe-ka-zTW"/>
+                                                <constraint firstItem="JdP-Yu-cyU" firstAttribute="centerY" secondItem="LAT-Ax-qQ4" secondAttribute="centerY" id="SBE-iS-Dc6"/>
+                                                <constraint firstAttribute="trailing" secondItem="9YW-wW-CTr" secondAttribute="trailing" constant="20" symbolic="YES" id="YTa-Tu-QmZ"/>
+                                                <constraint firstItem="9YW-wW-CTr" firstAttribute="centerY" secondItem="LAT-Ax-qQ4" secondAttribute="centerY" id="kHw-BD-wXV"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="key" destination="JdP-Yu-cyU" id="Cwg-OE-4rR"/>
+                                            <outlet property="value" destination="9YW-wW-CTr" id="1gj-5x-CIM"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="OMS-5u-D7e" id="N7f-XC-d02"/>
+                                    <outlet property="delegate" destination="OMS-5u-D7e" id="xpL-Y1-KYV"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bMn-Fs-wOc" firstAttribute="trailing" secondItem="Jq1-fe-z2v" secondAttribute="trailing" id="3ed-yD-xSt"/>
+                            <constraint firstItem="Jq1-fe-z2v" firstAttribute="top" secondItem="bMn-Fs-wOc" secondAttribute="top" id="TUg-IJ-4h3"/>
+                            <constraint firstItem="Jq1-fe-z2v" firstAttribute="leading" secondItem="bMn-Fs-wOc" secondAttribute="leading" id="nS5-Zg-Fof"/>
+                            <constraint firstItem="bMn-Fs-wOc" firstAttribute="bottom" secondItem="Jq1-fe-z2v" secondAttribute="bottom" id="ukW-Xd-08s"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bMn-Fs-wOc"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Jq1-fe-z2v" id="AKd-Rh-tdZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xp6-Kz-ZsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="265" y="891"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vGP-Jk-pRc">
