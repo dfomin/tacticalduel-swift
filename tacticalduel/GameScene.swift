@@ -12,7 +12,15 @@ import GameplayKit
 class GameScene: SKScene {
     var edge: CGFloat!
     var mapView: HxMapView!
-    var gameOver = false
+    var gameOver = false {
+        didSet {
+            if gameOver {
+                log.commit()
+                UserDefaults.standard.set(log.log, forKey: log.name)
+            }
+        }
+    }
+    let log = GameLog()
     var currentTeam = "" {
         didSet {
             for r in -mapView.map.radius ... mapView.map.radius {
@@ -72,6 +80,7 @@ class GameScene: SKScene {
     
     let actionsNode = SKNode()
     var processButton: SKSpriteNode!
+    var logButton: SKSpriteNode!
 
     override func sceneDidLoad() {
         let radius = 3
@@ -113,6 +122,11 @@ class GameScene: SKScene {
         processButton.anchorPoint = CGPoint(x: 0, y: 0)
         processButton.position = CGPoint(x: 0, y: 0)
         addChild(processButton)
+        
+        logButton = SKSpriteNode(color: .white, size: CGSize(width: freeSpace / 2, height: freeSpace / 2))
+        logButton.anchorPoint = CGPoint(x: 1, y: 0)
+        logButton.position = CGPoint(x: frame.width, y: 0)
+        addChild(logButton)
         
         currentTeam = "team 1"
     }
@@ -194,9 +208,19 @@ class GameScene: SKScene {
                 processButton.color = .white
                 processActions(i: 0)
             } else if currentTeam == "end" {
+                log.commit()
                 currentTeam = "team 1"
                 processButton.color = .yellow
             }
+        }
+        
+        if logButton.contains(location) {
+            selectedCharacter = nil
+            currentAction = nil
+            
+            let alert = UIAlertController(title: "", message: log.lastTurn, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -207,6 +231,8 @@ class GameScene: SKScene {
             
             turns[hero.name] = CharacterTurn(numberOfActions: GameBalance.shared.turnsNumber)
         }
+        
+        log.add(team: name, heroes: zip(heroes, positions).map { "\($0)(\($1.0),\($1.1))" })
     }
     
     private func create(name: String, q: Int, r: Int, edge: CGFloat, team: String) -> CharacterView {
@@ -332,6 +358,7 @@ class GameScene: SKScene {
             
             if let fireTrapAction = actions[i] as? TurnActionFireTrap {
                 fireTrapAction.doAction()
+                log.add(hero: name, action: actions[i]!)
                 
                 names.removeAll(where: { $0 == name })
             }
@@ -344,6 +371,7 @@ class GameScene: SKScene {
             
             if let healAction = actions[i] as? TurnActionHeal {
                 healAction.doAction()
+                log.add(hero: name, action: actions[i]!)
                 
                 names.removeAll(where: { $0 == name })
             }
@@ -356,6 +384,7 @@ class GameScene: SKScene {
             
             if let moveAction = actions[i] as? TurnActionMove {
                 moveAction.doAction()
+                log.add(hero: name, action: actions[i]!)
                 
                 names.removeAll(where: { $0 == name })
             }
@@ -368,6 +397,7 @@ class GameScene: SKScene {
             
             if let blowAction = actions[i] as? TurnActionBlow {
                 blowAction.doAction()
+                log.add(hero: name, action: actions[i]!)
                 
                 names.removeAll(where: { $0 == name })
             }
@@ -380,6 +410,7 @@ class GameScene: SKScene {
             
             if let poisonAction = actions[i] as? TurnActionPoison {
                 poisonAction.doAction()
+                log.add(hero: name, action: actions[i]!)
                 
                 names.removeAll(where: { $0 == name })
             }
@@ -392,6 +423,7 @@ class GameScene: SKScene {
                     if !cell.mapObjects.filter({ $0 is Mortal }).isEmpty {
                         for object in cell.mapObjects {
                             if let activatable = object as? Activatable {
+                                log.add(event: object.name)
                                 activatable.activate()
                             }
                         }
@@ -407,6 +439,7 @@ class GameScene: SKScene {
             
             if let shootAction = actions[i] as? TurnActionAllDirectionsShoot {
                 shootAction.doAction()
+                log.add(hero: name, action: actions[i]!)
                 
                 names.removeAll(where: { $0 == name })
             }
@@ -419,6 +452,7 @@ class GameScene: SKScene {
             
             if let shootAction = actions[i] as? TurnActionDamage {
                 shootAction.doAction()
+                log.add(hero: name, action: actions[i]!)
                 
                 names.removeAll(where: { $0 == name })
             }
@@ -431,6 +465,7 @@ class GameScene: SKScene {
             
             if let freezeAction = actions[i] as? TurnActionFreeze {
                 freezeAction.doAction()
+                log.add(hero: name, action: actions[i]!)
                 
                 names.removeAll(where: { $0 == name })
             }
@@ -443,6 +478,7 @@ class GameScene: SKScene {
             
             if let invisibilityAction = actions[i] as? TurnActionInvisibility {
                 invisibilityAction.doAction()
+                log.add(hero: name, action: actions[i]!)
                 
                 names.removeAll(where: { $0 == name })
             }
