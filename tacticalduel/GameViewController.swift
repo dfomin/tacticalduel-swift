@@ -18,12 +18,13 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //let scene = HxGameScene(size: view.bounds.size)
         let scene = GameScene(size: view.bounds.size)
         
         let positions1 = [(0, -3), (-3, 0), (3, -3), (0, -2), (-2, 0), (2, -2)]
         let positions2 = [(0, 3), (3, 0), (-3, 3), (0, 2), (2, 0), (-2, 2)]
-        scene.createTeam(name: "team 1", heroes: heroes1, positions: positions1)
-        scene.createTeam(name: "team 2", heroes: heroes2, positions: positions2)
+        //scene.createTeam(name: "team 1", heroes: heroes1, positions: positions1)
+        //scene.createTeam(name: "team 2", heroes: heroes2, positions: positions2)
         
         let skView = view as! SKView
         skView.showsFPS = true

@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  HxGameScene.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 07/05/2018.
@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class HxGameScene: SKScene {
     var edge: CGFloat!
     var mapView: HxMapView!
     var gameOver = false {

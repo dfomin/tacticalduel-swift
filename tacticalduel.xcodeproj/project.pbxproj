@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0704BE0F23BD4B7B00ECD6CA /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704BE0E23BD4B7B00ECD6CA /* Map.swift */; };
+		0704BE1123BD4B9C00ECD6CA /* MapObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704BE1023BD4B9C00ECD6CA /* MapObject.swift */; };
+		0704BE1323BD4E0000ECD6CA /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704BE1223BD4E0000ECD6CA /* Position.swift */; };
+		0704BE1523BD4F0500ECD6CA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704BE1423BD4F0500ECD6CA /* GameScene.swift */; };
 		071F4DE4218B63F6005C7B24 /* TurnActionDamage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F4DE3218B63F6005C7B24 /* TurnActionDamage.swift */; };
 		071F4DE6218B6F08005C7B24 /* TurnActionCommonShoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F4DE5218B6F08005C7B24 /* TurnActionCommonShoot.swift */; };
 		071F4DE8218B6F3B005C7B24 /* GameBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F4DE7218B6F3B005C7B24 /* GameBalance.swift */; };
@@ -53,7 +57,7 @@
 		07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC6E217D2B43004AA00A /* TurnAction.swift */; };
 		07BEFC76217D2B43004AA00A /* TurnActionSkip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */; };
 		07DBB28120A0EFD2006DB7F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB28020A0EFD2006DB7F7 /* AppDelegate.swift */; };
-		07DBB28720A0EFD2006DB7F7 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB28620A0EFD2006DB7F7 /* GameScene.swift */; };
+		07DBB28720A0EFD2006DB7F7 /* HxGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB28620A0EFD2006DB7F7 /* HxGameScene.swift */; };
 		07DBB28920A0EFD2006DB7F7 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBB28820A0EFD2006DB7F7 /* GameViewController.swift */; };
 		07DBB28C20A0EFD2006DB7F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07DBB28A20A0EFD2006DB7F7 /* Main.storyboard */; };
 		07DBB28E20A0EFD4006DB7F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07DBB28D20A0EFD4006DB7F7 /* Assets.xcassets */; };
@@ -80,6 +84,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0704BE0E23BD4B7B00ECD6CA /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		0704BE1023BD4B9C00ECD6CA /* MapObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapObject.swift; sourceTree = "<group>"; };
+		0704BE1223BD4E0000ECD6CA /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		0704BE1423BD4F0500ECD6CA /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		071F4DE3218B63F6005C7B24 /* TurnActionDamage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionDamage.swift; sourceTree = "<group>"; };
 		071F4DE5218B6F08005C7B24 /* TurnActionCommonShoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionCommonShoot.swift; sourceTree = "<group>"; };
 		071F4DE7218B6F3B005C7B24 /* GameBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBalance.swift; sourceTree = "<group>"; };
@@ -127,7 +135,7 @@
 		07BEFC71217D2B43004AA00A /* TurnActionSkip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionSkip.swift; sourceTree = "<group>"; };
 		07DBB27D20A0EFD2006DB7F7 /* tacticalduel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tacticalduel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DBB28020A0EFD2006DB7F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07DBB28620A0EFD2006DB7F7 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		07DBB28620A0EFD2006DB7F7 /* HxGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HxGameScene.swift; sourceTree = "<group>"; };
 		07DBB28820A0EFD2006DB7F7 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		07DBB28B20A0EFD2006DB7F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07DBB28D20A0EFD4006DB7F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -169,6 +177,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0704BE0D23BD4B6B00ECD6CA /* Square */ = {
+			isa = PBXGroup;
+			children = (
+				0704BE0E23BD4B7B00ECD6CA /* Map.swift */,
+				0704BE1023BD4B9C00ECD6CA /* MapObject.swift */,
+				0704BE1223BD4E0000ECD6CA /* Position.swift */,
+				0704BE1423BD4F0500ECD6CA /* GameScene.swift */,
+			);
+			path = Square;
+			sourceTree = "<group>";
+		};
 		07205D5C2173E0E10010E3E0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,12 +291,13 @@
 		07DBB27F20A0EFD2006DB7F7 /* tacticalduel */ = {
 			isa = PBXGroup;
 			children = (
+				0704BE0D23BD4B6B00ECD6CA /* Square */,
 				07B6DAAD219CF05F00061F72 /* Map */,
 				077CD95E2180B97600BCC502 /* Characters */,
 				077CD957217FC13400BCC502 /* Components */,
 				07BEFC6C217D2AD0004AA00A /* TurnActions */,
 				07205D5C2173E0E10010E3E0 /* Supporting Files */,
-				07DBB28620A0EFD2006DB7F7 /* GameScene.swift */,
+				07DBB28620A0EFD2006DB7F7 /* HxGameScene.swift */,
 				07DBB28820A0EFD2006DB7F7 /* GameViewController.swift */,
 				071F4DE7218B6F3B005C7B24 /* GameBalance.swift */,
 				07B6DADE21A2113600061F72 /* StartViewController.swift */,
@@ -453,7 +473,7 @@
 			files = (
 				07B6DAE121A2124700061F72 /* HeroCell.swift in Sources */,
 				07B6DAA8219CE4EE00061F72 /* Movable.swift in Sources */,
-				07DBB28720A0EFD2006DB7F7 /* GameScene.swift in Sources */,
+				07DBB28720A0EFD2006DB7F7 /* HxGameScene.swift in Sources */,
 				07B6DAD721A0984300061F72 /* Freezable.swift in Sources */,
 				07BEFC76217D2B43004AA00A /* TurnActionSkip.swift in Sources */,
 				07B6DAAC219CEDA300061F72 /* TurnActionHeal.swift in Sources */,
@@ -462,6 +482,7 @@
 				077CD9642180B99500BCC502 /* CharacterView.swift in Sources */,
 				07517E382190BA7800A4D77C /* TurnActionSplashShoot.swift in Sources */,
 				07B6DABA219CF07700061F72 /* HxDirection.swift in Sources */,
+				0704BE1123BD4B9C00ECD6CA /* MapObject.swift in Sources */,
 				07BEFC72217D2B43004AA00A /* TurnActionMove.swift in Sources */,
 				07B6DACB219E324300061F72 /* Activatable.swift in Sources */,
 				07B6DABF219CF07700061F72 /* HxCoordinates.swift in Sources */,
@@ -482,7 +503,9 @@
 				07B6DAB9219CF07700061F72 /* HxGrid.swift in Sources */,
 				077CD9632180B99500BCC502 /* CharacterTurn.swift in Sources */,
 				07B6DACD219E335E00061F72 /* Temporary.swift in Sources */,
+				0704BE0F23BD4B7B00ECD6CA /* Map.swift in Sources */,
 				07B6DACF219E33B000061F72 /* Poison.swift in Sources */,
+				0704BE1523BD4F0500ECD6CA /* GameScene.swift in Sources */,
 				07B6DABB219CF07700061F72 /* HxMap.swift in Sources */,
 				07356FC52190E4C3009C88C7 /* TurnActionFireSection.swift in Sources */,
 				073334D121A430B5000E4578 /* BalanceCell.swift in Sources */,
@@ -490,6 +513,7 @@
 				071F4DE6218B6F08005C7B24 /* TurnActionCommonShoot.swift in Sources */,
 				07DBB28120A0EFD2006DB7F7 /* AppDelegate.swift in Sources */,
 				071F4DE4218B63F6005C7B24 /* TurnActionDamage.swift in Sources */,
+				0704BE1323BD4E0000ECD6CA /* Position.swift in Sources */,
 				07B6DAB8219CF07700061F72 /* HxCellView.swift in Sources */,
 				07B6DAD1219E386D00061F72 /* TurnActionPoison.swift in Sources */,
 				073334CF21A43016000E4578 /* BalanceViewController.swift in Sources */,
