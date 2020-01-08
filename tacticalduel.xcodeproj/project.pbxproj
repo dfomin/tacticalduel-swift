@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0704BE0F23BD4B7B00ECD6CA /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704BE0E23BD4B7B00ECD6CA /* Map.swift */; };
-		0704BE1123BD4B9C00ECD6CA /* MapObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704BE1023BD4B9C00ECD6CA /* MapObject.swift */; };
-		0704BE1323BD4E0000ECD6CA /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704BE1223BD4E0000ECD6CA /* Position.swift */; };
+		07031EC423C65C27005F6924 /* PlayerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07031EC323C65C27005F6924 /* PlayerUnit.swift */; };
+		07031EC623C65D22005F6924 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07031EC523C65D22005F6924 /* SpriteComponent.swift */; };
+		07031EC823C68208005F6924 /* GridPositionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07031EC723C68208005F6924 /* GridPositionComponent.swift */; };
+		07031ECA23C689EF005F6924 /* AIUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07031EC923C689EF005F6924 /* AIUnit.swift */; };
+		07031ECC23C6919D005F6924 /* RandomMoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07031ECB23C6919D005F6924 /* RandomMoveComponent.swift */; };
 		0704BE1523BD4F0500ECD6CA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0704BE1423BD4F0500ECD6CA /* GameScene.swift */; };
 		071F4DE4218B63F6005C7B24 /* TurnActionDamage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F4DE3218B63F6005C7B24 /* TurnActionDamage.swift */; };
 		071F4DE6218B6F08005C7B24 /* TurnActionCommonShoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F4DE5218B6F08005C7B24 /* TurnActionCommonShoot.swift */; };
@@ -84,9 +86,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0704BE0E23BD4B7B00ECD6CA /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		0704BE1023BD4B9C00ECD6CA /* MapObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapObject.swift; sourceTree = "<group>"; };
-		0704BE1223BD4E0000ECD6CA /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		07031EC323C65C27005F6924 /* PlayerUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerUnit.swift; sourceTree = "<group>"; };
+		07031EC523C65D22005F6924 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
+		07031EC723C68208005F6924 /* GridPositionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPositionComponent.swift; sourceTree = "<group>"; };
+		07031EC923C689EF005F6924 /* AIUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIUnit.swift; sourceTree = "<group>"; };
+		07031ECB23C6919D005F6924 /* RandomMoveComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomMoveComponent.swift; sourceTree = "<group>"; };
 		0704BE1423BD4F0500ECD6CA /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		071F4DE3218B63F6005C7B24 /* TurnActionDamage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurnActionDamage.swift; sourceTree = "<group>"; };
 		071F4DE5218B6F08005C7B24 /* TurnActionCommonShoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnActionCommonShoot.swift; sourceTree = "<group>"; };
@@ -180,10 +184,12 @@
 		0704BE0D23BD4B6B00ECD6CA /* Square */ = {
 			isa = PBXGroup;
 			children = (
-				0704BE0E23BD4B7B00ECD6CA /* Map.swift */,
-				0704BE1023BD4B9C00ECD6CA /* MapObject.swift */,
-				0704BE1223BD4E0000ECD6CA /* Position.swift */,
 				0704BE1423BD4F0500ECD6CA /* GameScene.swift */,
+				07031EC323C65C27005F6924 /* PlayerUnit.swift */,
+				07031EC523C65D22005F6924 /* SpriteComponent.swift */,
+				07031EC723C68208005F6924 /* GridPositionComponent.swift */,
+				07031EC923C689EF005F6924 /* AIUnit.swift */,
+				07031ECB23C6919D005F6924 /* RandomMoveComponent.swift */,
 			);
 			path = Square;
 			sourceTree = "<group>";
@@ -405,16 +411,16 @@
 				TargetAttributes = {
 					07DBB27C20A0EFD2006DB7F7 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1130;
 					};
 					07DBB29620A0EFD4006DB7F7 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1130;
 						TestTargetID = 07DBB27C20A0EFD2006DB7F7;
 					};
 					07DBB2A120A0EFD4006DB7F7 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1130;
 						TestTargetID = 07DBB27C20A0EFD2006DB7F7;
 					};
 				};
@@ -477,17 +483,18 @@
 				07B6DAD721A0984300061F72 /* Freezable.swift in Sources */,
 				07BEFC76217D2B43004AA00A /* TurnActionSkip.swift in Sources */,
 				07B6DAAC219CEDA300061F72 /* TurnActionHeal.swift in Sources */,
+				07031ECA23C689EF005F6924 /* AIUnit.swift in Sources */,
 				07B6DADF21A2113600061F72 /* StartViewController.swift in Sources */,
 				077CD9622180B99500BCC502 /* Character.swift in Sources */,
 				077CD9642180B99500BCC502 /* CharacterView.swift in Sources */,
 				07517E382190BA7800A4D77C /* TurnActionSplashShoot.swift in Sources */,
 				07B6DABA219CF07700061F72 /* HxDirection.swift in Sources */,
-				0704BE1123BD4B9C00ECD6CA /* MapObject.swift in Sources */,
 				07BEFC72217D2B43004AA00A /* TurnActionMove.swift in Sources */,
 				07B6DACB219E324300061F72 /* Activatable.swift in Sources */,
 				07B6DABF219CF07700061F72 /* HxCoordinates.swift in Sources */,
 				07356FBF2190CC5F009C88C7 /* TurnActionAllDirectionsShoot.swift in Sources */,
 				07B6DAB7219CF07700061F72 /* HxMapObject.swift in Sources */,
+				07031EC423C65C27005F6924 /* PlayerUnit.swift in Sources */,
 				07B6DAAA219CE5F500061F72 /* TurnActionBlow.swift in Sources */,
 				07DBB28920A0EFD2006DB7F7 /* GameViewController.swift in Sources */,
 				07B6DABD219CF07700061F72 /* HxMapView.swift in Sources */,
@@ -503,7 +510,6 @@
 				07B6DAB9219CF07700061F72 /* HxGrid.swift in Sources */,
 				077CD9632180B99500BCC502 /* CharacterTurn.swift in Sources */,
 				07B6DACD219E335E00061F72 /* Temporary.swift in Sources */,
-				0704BE0F23BD4B7B00ECD6CA /* Map.swift in Sources */,
 				07B6DACF219E33B000061F72 /* Poison.swift in Sources */,
 				0704BE1523BD4F0500ECD6CA /* GameScene.swift in Sources */,
 				07B6DABB219CF07700061F72 /* HxMap.swift in Sources */,
@@ -512,11 +518,13 @@
 				07BEFC73217D2B43004AA00A /* TurnAction.swift in Sources */,
 				071F4DE6218B6F08005C7B24 /* TurnActionCommonShoot.swift in Sources */,
 				07DBB28120A0EFD2006DB7F7 /* AppDelegate.swift in Sources */,
+				07031EC823C68208005F6924 /* GridPositionComponent.swift in Sources */,
 				071F4DE4218B63F6005C7B24 /* TurnActionDamage.swift in Sources */,
-				0704BE1323BD4E0000ECD6CA /* Position.swift in Sources */,
 				07B6DAB8219CF07700061F72 /* HxCellView.swift in Sources */,
 				07B6DAD1219E386D00061F72 /* TurnActionPoison.swift in Sources */,
+				07031EC623C65D22005F6924 /* SpriteComponent.swift in Sources */,
 				073334CF21A43016000E4578 /* BalanceViewController.swift in Sources */,
+				07031ECC23C6919D005F6924 /* RandomMoveComponent.swift in Sources */,
 				07B6DAC7219E2FE100061F72 /* TurnActionFireTrap.swift in Sources */,
 				07B6DADD21A1F73100061F72 /* TurnActionSlot.swift in Sources */,
 				07356FC32190D9A6009C88C7 /* TurnActionLightning.swift in Sources */,
@@ -704,7 +712,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dfomin.tacticalduel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -722,7 +730,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dfomin.tacticalduel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -742,7 +750,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dfomin.tacticalduelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tacticalduel.app/tacticalduel";
 			};
@@ -763,7 +771,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dfomin.tacticalduelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tacticalduel.app/tacticalduel";
 			};
@@ -783,7 +791,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dfomin.tacticalduelUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = tacticalduel;
 			};
@@ -803,7 +811,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dfomin.tacticalduelUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = tacticalduel;
 			};

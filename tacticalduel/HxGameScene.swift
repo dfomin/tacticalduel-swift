@@ -164,7 +164,7 @@ class HxGameScene: SKScene {
             var buttonTapped = false
             for button in buttons {
                 if button.contains(location) {
-                    if let index = buttons.index(of: button) {
+                    if let index = buttons.firstIndex(of: button) {
                         let action = createAction(index: index)
                         if turns[character.name]!.hasSpaceFor(slots: action.turnSlots) {
                             turns[character.name]!.append(action: action)
