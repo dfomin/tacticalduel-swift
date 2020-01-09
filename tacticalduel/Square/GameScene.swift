@@ -28,8 +28,12 @@ class GameScene: SKScene {
         for entity in self.entities {
             let sprite = entity.component(ofType: SpriteComponent.self)!.node as! SKSpriteNode
             let spriteSize = entity.component(ofType: GridPositionComponent.self)!.spriteSize
+            let label = entity.component(ofType: HealthViewComponent.self)!.label
+            let node = entity.component(ofType: ScreenPositionComponent.self)!.node
             sprite.scale(to: spriteSize)
-            addChild(sprite)
+            node.addChild(sprite)
+            node.addChild(label)
+            addChild(node)
             
             updatePossibleMoves(entity: entity)
         }
@@ -56,9 +60,24 @@ class GameScene: SKScene {
                     updatePossibleMoves(entity: entity)
                 }
             }
+            
+            if let weapon = entity.component(ofType: WeaponComponent.self), weapon.canShoot, Int.random(in: 0 ... 1) == 1 {
+                weapon.shoot()
+                let pos = entity.component(ofType: GridPositionComponent.self)!.position
+                for targetEntity in self.entities {
+                    let targetPos = targetEntity.component(ofType: GridPositionComponent.self)!.position!
+                    let field1 = targetPos.1 / (gridSize.1 / 2)
+                    let field2 = pos!.1 / (gridSize.1 / 2)
+                    let isEnemy = field1 != field2
+                    if (targetPos.0 == pos!.0) && isEnemy {
+                        targetEntity.component(ofType: HealthComponent.self)!.apply(damage: weapon.damage)
+                    }
+                }
+            }
         }
         
         updateSpritePositions()
+        updateHealthViews()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -71,8 +90,8 @@ extension GameScene {
     private func updateSpritePositions() {
         for entity in self.entities {
             if let gridPos = entity.component(ofType: GridPositionComponent.self),
-                let sprite = entity.component(ofType: SpriteComponent.self)?.node as? SKSpriteNode {
-                sprite.position = gridPos.spritePosition
+                let node = entity.component(ofType: ScreenPositionComponent.self)?.node {
+                node.position = gridPos.spritePosition
             }
         }
     }
@@ -100,6 +119,15 @@ extension GameScene {
             
             moveComponent.possibleMoves = possibleMoves
             moveComponent.step = nil
+        }
+    }
+    
+    private func updateHealthViews() {
+        for entity in self.entities {
+            if let healthView = entity.component(ofType: HealthViewComponent.self),
+                let health = entity.component(ofType: HealthComponent.self) {
+                healthView.health = health.health
+            }
         }
     }
 }
