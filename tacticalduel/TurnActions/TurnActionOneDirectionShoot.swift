@@ -1,12 +1,12 @@
 //
-//  TurnActionOneDirectionShoot.swift
+//  ActionOneDirectionShoot.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 06/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionOneDirectionShoot: TurnActionDamage {
+class ActionOneDirectionShoot: ActionDamage {
     private let map: HxMap
     private let source: () -> HxCoordinates
     

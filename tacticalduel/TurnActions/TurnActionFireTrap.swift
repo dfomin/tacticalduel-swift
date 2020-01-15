@@ -1,12 +1,12 @@
 //
-//  TurnActionFireTrap.swift
+//  ActionFireTrap.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 16/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionFireTrap: TurnAction {
+class ActionFireTrap: Action {
     private let map: HxMap
     private let team: String
     

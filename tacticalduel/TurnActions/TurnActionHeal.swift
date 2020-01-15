@@ -1,12 +1,12 @@
 //
-//  TurnActionHeal.swift
+//  ActionHeal.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 15/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionHeal: TurnAction {
+class ActionHeal: Action {
     private let object: Mortal
     
     let iconName = "power2"

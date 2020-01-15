@@ -11,25 +11,42 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    private var entities = Set<GKEntity>()
+    private let actionTime = TimeInterval(0.5)
+    
     private var lastUpdateTimeInterval: TimeInterval!
     private var gridSize = (4, 8)
+    
+    private var playerUnit: PlayerUnit!
+    private var enemyUnit: AIUnit!
+    
+    private var units: [GKEntity] {
+        return [playerUnit, enemyUnit]
+    }
+    
+    private var actions = [GKEntity: [Action]]()
+    private var actionIndex = 0
+    private var actionTimer = TimeInterval(0)
+    private var actionsInProgress = false
+    
+    private var gridScreenManager: GridScreenManager!
     
     override func sceneDidLoad() {
         var field = UIScreen.main.bounds
         let padding = (field.width - field.height / 2) / 2
         field = field.inset(by: UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding))
         
-        let playerUnit = PlayerUnit(name: "", field: field, gridSize: gridSize)
-        self.entities.insert(playerUnit)
-        let enemyUnit = AIUnit(name: "", field: field, gridSize: gridSize)
-        self.entities.insert(enemyUnit)
+        gridScreenManager = GridScreenManager(field: field, gridSize: gridSize)
+        let positions = [(0, 0), (3, 7)]
         
-        for entity in self.entities {
+        playerUnit = PlayerUnit(name: "", field: field, gridSize: gridSize)
+        enemyUnit = AIUnit(name: "", field: field, gridSize: gridSize)
+        
+        for (i, entity) in self.units.enumerated() {
             let sprite = entity.component(ofType: SpriteComponent.self)!.node as! SKSpriteNode
-            let spriteSize = entity.component(ofType: GridPositionComponent.self)!.spriteSize
+            let spriteSize = gridScreenManager.cellSize
             let label = entity.component(ofType: HealthViewComponent.self)!.label
             let node = entity.component(ofType: ScreenPositionComponent.self)!.node
+            node.position = gridScreenManager.screenPosition(for: positions[i])
             sprite.scale(to: spriteSize)
             node.addChild(sprite)
             node.addChild(label)
@@ -38,7 +55,8 @@ class GameScene: SKScene {
             updatePossibleMoves(entity: entity)
         }
         
-        updateSpritePositions()
+        actions[playerUnit] = [MoveAction(shift: (1, 0)), ShootAction(), MoveAction(shift: (1, 0))]
+        actions[enemyUnit] = [MoveAction(shift: (-1, 0)), MoveAction(shift: (-1, 0)), ShootAction()]
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -47,54 +65,74 @@ class GameScene: SKScene {
             return
         }
         
-        let deltaTime = currentTime - self.lastUpdateTimeInterval
-        self.lastUpdateTimeInterval = currentTime
+        if actionIndex == -1 || actionsInProgress {
+            return
+        }
         
-        for entity in self.entities {
-            entity.update(deltaTime: deltaTime)
-            
-            if let moveComponent = entity.component(ofType: RandomMoveComponent.self), let step = moveComponent.step {
-                if let gridComponent = entity.component(ofType: GridPositionComponent.self) {
-                    gridComponent.position = (gridComponent.position.0 + step.0, gridComponent.position.1 + step.1)
-                    
-                    updatePossibleMoves(entity: entity)
-                }
+        actionsInProgress = true
+        
+        let delayAction = SKAction.wait(forDuration: actionTime)
+        self.run(delayAction) {
+            self.actionIndex += 1
+            self.actionsInProgress = false
+            if self.actionIndex == 3 {
+                self.actionIndex = -1
             }
-            
-            if let weapon = entity.component(ofType: WeaponComponent.self), weapon.canShoot, Int.random(in: 0 ... 1) == 1 {
-                weapon.shoot()
-                let pos = entity.component(ofType: GridPositionComponent.self)!.position
-                for targetEntity in self.entities {
-                    let targetPos = targetEntity.component(ofType: GridPositionComponent.self)!.position!
-                    let field1 = targetPos.1 / (gridSize.1 / 2)
-                    let field2 = pos!.1 / (gridSize.1 / 2)
-                    let isEnemy = field1 != field2
-                    if (targetPos.0 == pos!.0) && isEnemy {
-                        targetEntity.component(ofType: HealthComponent.self)!.apply(damage: weapon.damage)
-                    }
+        }
+        
+        for entity in self.units {
+            if let action = actions[entity]?[actionIndex] {
+                if let moveAction = action as? MoveAction {
+                    let shift = moveAction.shift
+                    let cellSize = gridScreenManager.cellSize.width
+                    let delta = CGVector(dx: CGFloat(shift.0) * cellSize, dy: CGFloat(shift.1) * cellSize)
+                    let entityAction = SKAction.move(by: delta, duration: actionTime)
+                    entity.component(ofType: ScreenPositionComponent.self)!.node.run(entityAction)
+                } else if action is ShootAction {
+                    let entityAction = SKAction.wait(forDuration: actionTime)
+                    entity.component(ofType: ScreenPositionComponent.self)!.node.run(entityAction)
                 }
             }
         }
         
-        updateSpritePositions()
-        updateHealthViews()
+//        for entity in self.units {
+//            if let moveComponent = entity.component(ofType: RandomMoveComponent.self), let step = moveComponent.step {
+//                if let gridComponent = entity.component(ofType: GridPositionComponent.self) {
+//                    gridComponent.position = (gridComponent.position.0 + step.0, gridComponent.position.1 + step.1)
+//
+//                    updatePossibleMoves(entity: entity)
+//                }
+//            }
+//
+//            if let weapon = entity.component(ofType: WeaponComponent.self), weapon.canShoot && Int.random(in: 0 ... 4) == 0 {
+//                weapon.shoot()
+//                let pos = entity.component(ofType: GridPositionComponent.self)!.position
+//                for targetEntity in self.units {
+//                    let targetPos = targetEntity.component(ofType: GridPositionComponent.self)!.position!
+//                    let field1 = targetPos.1 / (gridSize.1 / 2)
+//                    let field2 = pos!.1 / (gridSize.1 / 2)
+//                    let isEnemy = field1 != field2
+//                    if (targetPos.0 == pos!.0) && isEnemy {
+//                        targetEntity.component(ofType: HealthComponent.self)!.apply(damage: weapon.damage)
+//                    }
+//                }
+//            }
+//        }
+//
+//        updateSpritePositions()
+//        updateHealthViews()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(touches.count)
+        if let touch = touches.first {
+            if let cell = gridScreenManager.gridPosition(for: touch.location(in: self)) {
+                print(cell)
+            }
+        }
     }
 }
 
 extension GameScene {
-    
-    private func updateSpritePositions() {
-        for entity in self.entities {
-            if let gridPos = entity.component(ofType: GridPositionComponent.self),
-                let node = entity.component(ofType: ScreenPositionComponent.self)?.node {
-                node.position = gridPos.spritePosition
-            }
-        }
-    }
     
     private func updatePossibleMoves(entity: GKEntity) {
         if let gridComponent = entity.component(ofType: GridPositionComponent.self),
@@ -123,11 +161,15 @@ extension GameScene {
     }
     
     private func updateHealthViews() {
-        for entity in self.entities {
+        for entity in self.units {
             if let healthView = entity.component(ofType: HealthViewComponent.self),
                 let health = entity.component(ofType: HealthComponent.self) {
                 healthView.health = health.health
             }
         }
+    }
+    
+    private func processAction(at index: Int) {
+        print(index)
     }
 }

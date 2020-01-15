@@ -25,9 +25,9 @@ class GameLog {
         lastTurn += team + ": " + heroes.joined(separator: ",") + "\n"
     }
     
-    func add(hero: String, action: TurnAction) {
+    func add(hero: String, action: Action) {
         var target = ""
-        if let targetAction = action as? TurnActionTarget {
+        if let targetAction = action as? ActionTarget {
             target = "\(targetAction.target.q),\(targetAction.target.r)"
         }
         

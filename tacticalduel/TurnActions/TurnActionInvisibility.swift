@@ -1,12 +1,12 @@
 //
-//  TurnActionInvisibility.swift
+//  ActionInvisibility.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 17/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionInvisibility: TurnAction {
+class ActionInvisibility: Action {
     private let object: Invisible
     
     let iconName = "power2"

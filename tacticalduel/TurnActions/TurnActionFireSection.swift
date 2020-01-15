@@ -1,12 +1,12 @@
 //
-//  TurnActionFireSection.swift
+//  ActionFireSection.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 05/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionFireSection: TurnActionDamage {
+class ActionFireSection: ActionDamage {
     private let map: HxMap
     private let source: () -> HxCoordinates
     

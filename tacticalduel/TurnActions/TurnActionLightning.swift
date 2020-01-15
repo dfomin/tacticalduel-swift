@@ -1,12 +1,12 @@
 //
-//  TurnActionLightning.swift
+//  ActionLightning.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 05/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionLightning: TurnActionDamage {
+class ActionLightning: ActionDamage {
     private let map: HxMap
     
     let iconName = "power1"

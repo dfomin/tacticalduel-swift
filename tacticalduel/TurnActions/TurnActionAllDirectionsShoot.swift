@@ -1,12 +1,12 @@
 //
-//  TurnActionAllDirectionsShoot.swift
+//  ActionAllDirectionsShoot.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 05/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionAllDirectionsShoot: TurnAction {
+class ActionAllDirectionsShoot: Action {
     private let source: () -> HxCoordinates
     private let map: HxMap
     

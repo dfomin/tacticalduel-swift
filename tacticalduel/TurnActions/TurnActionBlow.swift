@@ -1,12 +1,12 @@
 //
-//  TurnActionBlow.swift
+//  ActionBlow.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 15/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionBlow: TurnActionTarget {
+class ActionBlow: ActionTarget {
     private let map: HxMap
     
     let iconName = "power2"

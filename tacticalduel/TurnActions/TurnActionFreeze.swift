@@ -1,12 +1,12 @@
 //
-//  TurnActionFreeze.swift
+//  ActionFreeze.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 17/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionFreeze: TurnActionTarget {
+class ActionFreeze: ActionTarget {
     private let map: HxMap
     
     let iconName = "power2"

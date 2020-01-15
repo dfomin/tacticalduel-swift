@@ -15,7 +15,6 @@ class PlayerUnit: GKEntity {
         
         addComponent(ScreenPositionComponent())
         addComponent(SpriteComponent(color: .green, size: CGSize(width: 100, height: 100)))
-        addComponent(GridPositionComponent(field: field, gridSize: gridSize, initialPosition: (0, 0)))
         addComponent(RandomMoveComponent())
         addComponent(HealthComponent(health: 5))
         addComponent(HealthViewComponent(health: 5))

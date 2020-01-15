@@ -1,12 +1,12 @@
 //
-//  TurnActionSplashShoot.swift
+//  ActionSplashShoot.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 05/11/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionSplashShoot: TurnActionDamage {
+class ActionSplashShoot: ActionDamage {
     private let map: HxMap
     
     let iconName = "power1"

@@ -7,13 +7,13 @@
 //
 
 class CharacterTurn {
-    var actions: [TurnAction?]
+    var actions: [Action?]
     
     init(numberOfActions: Int) {
-        actions = [TurnAction?](repeating: nil, count: numberOfActions)
+        actions = [Action?](repeating: nil, count: numberOfActions)
     }
     
-    subscript(index: Int) -> TurnAction? {
+    subscript(index: Int) -> Action? {
         get {
             return actions[index]
         }
@@ -43,7 +43,7 @@ class CharacterTurn {
         return maxCount >= slots
     }
     
-    func append(action: TurnAction) {
+    func append(action: Action) {
         for i in 0 ..< actions.count {
             if actions[i] == nil {
                 var isOk = true
@@ -58,7 +58,7 @@ class CharacterTurn {
                     actions[i] = action
                     if action.turnSlots > 1 {
                         for j in i + 1 ..< i + action.turnSlots {
-                            actions[j] = TurnActionSlot()
+                            actions[j] = ActionSlot()
                         }
                     }
                     
@@ -69,10 +69,10 @@ class CharacterTurn {
     }
     
     func remove(at index: Int) {
-        if actions[index] is TurnActionSlot {
+        if actions[index] is ActionSlot {
             var i = index
             while i >= 0 {
-                if actions[i] is TurnActionSlot {
+                if actions[i] is ActionSlot {
                     actions[i] = nil
                 } else {
                     actions[i] = nil
@@ -84,7 +84,7 @@ class CharacterTurn {
             
             i = index
             while i < actions.count {
-                if actions[i] is TurnActionSlot {
+                if actions[i] is ActionSlot {
                     actions[i] = nil
                 } else {
                     break
@@ -95,7 +95,7 @@ class CharacterTurn {
         } else {
             actions[index] = nil
             var i = index + 1
-            while i < actions.count && actions[i] is TurnActionSlot {
+            while i < actions.count && actions[i] is ActionSlot {
                 actions[i] = nil
                 i += 1
             }

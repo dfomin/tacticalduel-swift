@@ -1,12 +1,12 @@
 //
-//  TurnActionMove.swift
+//  ActionMove.swift
 //  tacticalduel
 //
 //  Created by Dmitry Fomin on 21/10/2018.
 //  Copyright © 2018 Dmitry Fomin. All rights reserved.
 //
 
-class TurnActionMove: TurnAction {
+class ActionMove: Action {
     private let direction: HxDirection
     private var object: HxMapObject
     private let map: HxMap
