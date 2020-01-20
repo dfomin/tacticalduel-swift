@@ -24,6 +24,7 @@ class GameScene: SKScene {
     }
     
     private var actions = [GKEntity: [Action]]()
+    private var futurePosition: (Int, Int)?
     private var actionIndex = 0
     private var actionTimer = TimeInterval(0)
     private var actionsInProgress = false
@@ -51,8 +52,6 @@ class GameScene: SKScene {
             node.addChild(sprite)
             node.addChild(label)
             addChild(node)
-            
-            updatePossibleMoves(entity: entity)
         }
         
         actions[playerUnit] = [MoveAction(shift: (1, 0)), ShootAction(), MoveAction(shift: (1, 0))]
@@ -77,6 +76,9 @@ class GameScene: SKScene {
             self.actionsInProgress = false
             if self.actionIndex == 3 {
                 self.actionIndex = -1
+                for unit in self.units {
+                    self.actions[unit] = []
+                }
             }
         }
         
@@ -124,41 +126,33 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard actionIndex == -1 && !actionsInProgress else { return }
+        
         if let touch = touches.first {
             if let cell = gridScreenManager.gridPosition(for: touch.location(in: self)) {
-                print(cell)
+                let spritePos = playerUnit.component(ofType: ScreenPositionComponent.self)!.node.position
+                let futurePos = futurePosition ?? gridScreenManager.gridPosition(for: spritePos)!
+                if futurePos == cell {
+                    actions[playerUnit]!.append(ShootAction())
+                } else {
+                    let x = cell.0 - futurePos.0
+                    let y = cell.1 - futurePos.1
+                    if (x == 0 && abs(y) == 1) || (y == 0 && abs(x) == 1) {
+                        actions[playerUnit]!.append(MoveAction(shift: (x, y)))
+                        futurePosition = cell
+                    }
+                }
+                
+                if actions[playerUnit]!.count == 3 {
+                    actionIndex = 0
+                    actions[enemyUnit] = [MoveAction(shift: (-1, 0)), ShootAction(), MoveAction(shift: (1, 0))]
+                }
             }
         }
     }
 }
 
 extension GameScene {
-    
-    private func updatePossibleMoves(entity: GKEntity) {
-        if let gridComponent = entity.component(ofType: GridPositionComponent.self),
-            let moveComponent = entity.component(ofType: RandomMoveComponent.self) {
-            var possibleMoves = [(Int, Int)]()
-            
-            if gridComponent.position.0 > 0 {
-                possibleMoves.append((-1, 0))
-            }
-            
-            if gridComponent.position.0 < self.gridSize.0 - 1 {
-                possibleMoves.append((1, 0))
-            }
-            
-            if gridComponent.position.1 % (self.gridSize.1 / 2) > 0 {
-                possibleMoves.append((0, -1))
-            }
-            
-            if gridComponent.position.1 % (self.gridSize.1 / 2) < (self.gridSize.1 / 2) - 1 {
-                possibleMoves.append((0, 1))
-            }
-            
-            moveComponent.possibleMoves = possibleMoves
-            moveComponent.step = nil
-        }
-    }
     
     private func updateHealthViews() {
         for entity in self.units {
@@ -167,9 +161,5 @@ extension GameScene {
                 healthView.health = health.health
             }
         }
-    }
-    
-    private func processAction(at index: Int) {
-        print(index)
     }
 }
