@@ -92,37 +92,21 @@ class GameScene: SKScene {
                     entity.component(ofType: ScreenPositionComponent.self)!.node.run(entityAction)
                 } else if action is ShootAction {
                     let entityAction = SKAction.wait(forDuration: actionTime)
-                    entity.component(ofType: ScreenPositionComponent.self)!.node.run(entityAction)
+                    let node = entity.component(ofType: ScreenPositionComponent.self)!.node
+                    node.run(entityAction) {
+                        let (x, _) = self.gridScreenManager.gridPosition(for: node.position)!
+                        let enemy: GKEntity = entity == self.playerUnit ? self.enemyUnit : self.playerUnit
+                        let enemyPosition = enemy.component(ofType: ScreenPositionComponent.self)!.node.position
+                        let (enemyX, _) = self.gridScreenManager.gridPosition(for: enemyPosition)!
+                        if x == enemyX {
+                            let healthComponent = enemy.component(ofType: HealthComponent.self)!
+                            healthComponent.apply(damage: 1)
+                            enemy.component(ofType: HealthViewComponent.self)!.health = healthComponent.health
+                        }
+                    }
                 }
             }
         }
-        
-//        for entity in self.units {
-//            if let moveComponent = entity.component(ofType: RandomMoveComponent.self), let step = moveComponent.step {
-//                if let gridComponent = entity.component(ofType: GridPositionComponent.self) {
-//                    gridComponent.position = (gridComponent.position.0 + step.0, gridComponent.position.1 + step.1)
-//
-//                    updatePossibleMoves(entity: entity)
-//                }
-//            }
-//
-//            if let weapon = entity.component(ofType: WeaponComponent.self), weapon.canShoot && Int.random(in: 0 ... 4) == 0 {
-//                weapon.shoot()
-//                let pos = entity.component(ofType: GridPositionComponent.self)!.position
-//                for targetEntity in self.units {
-//                    let targetPos = targetEntity.component(ofType: GridPositionComponent.self)!.position!
-//                    let field1 = targetPos.1 / (gridSize.1 / 2)
-//                    let field2 = pos!.1 / (gridSize.1 / 2)
-//                    let isEnemy = field1 != field2
-//                    if (targetPos.0 == pos!.0) && isEnemy {
-//                        targetEntity.component(ofType: HealthComponent.self)!.apply(damage: weapon.damage)
-//                    }
-//                }
-//            }
-//        }
-//
-//        updateSpritePositions()
-//        updateHealthViews()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

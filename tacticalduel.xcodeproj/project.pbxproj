@@ -28,7 +28,6 @@
 		075D0BB223CA2E1D002ABAA9 /* MoveAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075D0BB123CA2E1D002ABAA9 /* MoveAction.swift */; };
 		075D0BB423CA3076002ABAA9 /* ShootAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075D0BB323CA3076002ABAA9 /* ShootAction.swift */; };
 		075D0BB623CA52D5002ABAA9 /* GridScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075D0BB523CA52D5002ABAA9 /* GridScreenManager.swift */; };
-		075D0BB823CA5972002ABAA9 /* GridPositionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075D0BB723CA5972002ABAA9 /* GridPositionComponent.swift */; };
 		077CD95D2180B8BF00BCC502 /* Mortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CD95C2180B8BF00BCC502 /* Mortal.swift */; };
 		077CD9622180B99500BCC502 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CD95F2180B99500BCC502 /* Character.swift */; };
 		077CD9632180B99500BCC502 /* CharacterTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077CD9602180B99500BCC502 /* CharacterTurn.swift */; };
@@ -113,7 +112,6 @@
 		075D0BB123CA2E1D002ABAA9 /* MoveAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveAction.swift; sourceTree = "<group>"; };
 		075D0BB323CA3076002ABAA9 /* ShootAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShootAction.swift; sourceTree = "<group>"; };
 		075D0BB523CA52D5002ABAA9 /* GridScreenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridScreenManager.swift; sourceTree = "<group>"; };
-		075D0BB723CA5972002ABAA9 /* GridPositionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPositionComponent.swift; sourceTree = "<group>"; };
 		077CD95C2180B8BF00BCC502 /* Mortal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mortal.swift; sourceTree = "<group>"; };
 		077CD95F2180B99500BCC502 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		077CD9602180B99500BCC502 /* CharacterTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterTurn.swift; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 				075D0BB123CA2E1D002ABAA9 /* MoveAction.swift */,
 				075D0BB323CA3076002ABAA9 /* ShootAction.swift */,
 				075D0BB523CA52D5002ABAA9 /* GridScreenManager.swift */,
-				075D0BB723CA5972002ABAA9 /* GridPositionComponent.swift */,
 			);
 			path = Square;
 			sourceTree = "<group>";
@@ -523,7 +520,6 @@
 				07356FC72190F567009C88C7 /* TurnActionOneDirectionShoot.swift in Sources */,
 				07B6DABE219CF07700061F72 /* HxMapObjectView.swift in Sources */,
 				071F4DE8218B6F3B005C7B24 /* GameBalance.swift in Sources */,
-				075D0BB823CA5972002ABAA9 /* GridPositionComponent.swift in Sources */,
 				07356FC12190D7E4009C88C7 /* TurnActionThrowStone.swift in Sources */,
 				07B6DAC9219E31F500061F72 /* FireTrap.swift in Sources */,
 				07B6DAD921A09F5D00061F72 /* TurnActionInvisibility.swift in Sources */,
