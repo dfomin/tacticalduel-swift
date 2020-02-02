@@ -33,11 +33,18 @@ class GameScene: SKScene {
     
     override func sceneDidLoad() {
         var field = UIScreen.main.bounds
+        
+        let bg = SKSpriteNode(imageNamed: "arena")
+        bg.position = CGPoint(x: field.width / 2, y: field.height / 2)
+        bg.scale(to: field.size)
+        bg.zPosition = -1
+        addChild(bg)
+        
         let padding = (field.width - field.height / 2) / 2
         field = field.inset(by: UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding))
         
         gridScreenManager = GridScreenManager(field: field, gridSize: gridSize)
-        let positions = [(0, 0), (3, 7)]
+        let positions = [(0, 1), (3, 6)]
         
         playerUnit = PlayerUnit(name: "", field: field, gridSize: gridSize)
         enemyUnit = AIUnit(name: "", field: field, gridSize: gridSize)

@@ -14,7 +14,7 @@ class PlayerUnit: GKEntity {
         super.init()
         
         addComponent(ScreenPositionComponent())
-        addComponent(SpriteComponent(color: .green, size: CGSize(width: 100, height: 100)))
+        addComponent(SpriteComponent(imageName: "pig_back", size: CGSize(width: 100, height: 100)))
         addComponent(HealthComponent(health: 5))
         addComponent(HealthViewComponent(health: 5))
         addComponent(WeaponComponent(damage: 1, cooldown: 0.5))

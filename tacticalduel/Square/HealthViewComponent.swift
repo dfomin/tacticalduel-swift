@@ -25,6 +25,7 @@ class HealthViewComponent: GKComponent {
         self.label.fontColor = .white
         self.label.fontName = self.label.fontName! + "-Bold"
         self.label.verticalAlignmentMode = .center
+        self.label.zPosition = -1
         
         super.init()
     }

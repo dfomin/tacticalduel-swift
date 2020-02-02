@@ -12,8 +12,8 @@ class SpriteComponent: GKComponent {
     
     private(set) var node: SKNode
     
-    init(color: UIColor, size: CGSize) {
-        node = SKSpriteNode(color: color, size: size)
+    init(imageName: String, size: CGSize) {
+        node = SKSpriteNode(imageNamed: imageName)
         
         super.init()
     }
